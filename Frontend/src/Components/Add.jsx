@@ -6,6 +6,7 @@ export default function Add() {
   return (
     <div className='add'>
       <Navbar text='Feed' text2 = "Add" hideStartButton = {true}></Navbar>
+      <Navbar text='Feed' text2 = "Add" hideStartButton = {true}></Navbar>
     </div>
   )
 }
