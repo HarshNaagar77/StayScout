@@ -1,0 +1,13 @@
+.form{
+    padding-top: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .form{
+        padding-top: 0px;
+    }
+    .submit2{
+        background-color: orange;
+        color: white;
+    }
+}

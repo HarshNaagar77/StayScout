@@ -1,0 +1,26 @@
+@media screen and (max-width: 768px) {
+    .registerform{
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        margin-top: -50px;
+    }
+    input{
+        width: 316px;
+    }
+    .submit{
+        width: 332px;
+    }
+    .register{
+        font-size: 80px;
+    }
+    .demo{
+        width: 332px;
+        background-color: orange;
+        color: white;
+    }
+    .form1{
+        margin: 0;
+        padding: 0;
+    }
+}

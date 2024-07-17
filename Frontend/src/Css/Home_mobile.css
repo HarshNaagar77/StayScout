@@ -1,0 +1,76 @@
+@media screen and (max-width: 768px)  {
+    .houseimg{
+        width: 350px;
+        
+    }
+    .home{
+        margin-top: 200px;
+    }
+    .org1{
+        font-size: 80px;
+
+    }
+    .org2{
+        font-size: 80px;
+    }
+    .org3{
+        font-size: 80px;
+    }
+    .stroke{
+        font-size: 80px;
+    }
+    .home-bottom{
+        font-size: 10px;
+        margin-top: 220px;
+    }
+    .bi-person{
+        display: none;
+    }
+    .getstarted{
+        margin-right: 20px;
+    }
+    .comfort{
+        margin-top: 90px;
+        margin-left: -50px;
+
+    }
+    .for{
+        margin-top: 180px;
+        margin-right: -30px;
+    }
+    .scout{
+        margin-top: 260px;
+        margin-left: -50px;
+    }
+    .homepage2{
+        flex-direction: column;
+    }
+    .houseimg2{
+        display: none;
+    }
+    .second{
+        font-size: 50px;
+        padding-top: 15px;
+        margin-top: -40px;
+    }
+    .third{
+        font-size: 50px;
+        padding-top: 15px;
+        margin-top: -40px;
+    }
+    .first{
+        font-size: 50px;
+        padding-top: 15px;
+        margin-top: -40px;
+    }
+    .home2btn{
+        font-size: 13px;
+        padding-right: 20px;
+        padding-left: 20px;
+        width: 50px;
+        height: 40px;
+    }
+    .navbar{
+        padding-top: 20px;
+    }
+  }

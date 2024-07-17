@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Playwrite+PE:wght@100..400&display=swap');
+body{
+    /* background-color: grey; */
+}
+
+.houseimg{
+    width: 600px;
+    margin-top: 50px;
+    z-index: 3;
+}
+
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    
+ 
+}
+
+h1{
+    position: absolute;
+    font-size: 170px;
+    font-family: "Oswald", sans-serif;
+    
+}
+.stroke{
+    color: transparent;
+    -webkit-text-stroke: 3px black;
+    z-index: 5;
+
+}
+
+
+.scout{
+    position: absolute;
+    top: -10vh;
+    left: 20vw;
+}
+.scout:hover{
+    cursor: url('../assets/logo.png') , auto;
+}
+.for:hover{
+    cursor: url('../assets/logo.png') , auto;
+}
+.comfort:hover{
+    cursor: url('../assets/logo.png') , auto;
+}
+.for{
+    position: absolute;
+    /* top: -10vh; */
+    top: 10vh;
+    right: 38vw;
+}
+.comfort{
+    position: absolute;
+    left: 30vw;
+    top: 40vh;
+}
+.btn{
+    font-size: 10px;
+    padding: 10px;
+    padding-right: 11px;
+    background-color: white;
+    border: 1px solid black;
+    padding-left: 11px;
+    border-radius: 50%;
+    animation: upDown 2s ease infinite;
+    cursor: pointer;
+    z-index: -50;
+}
+.bi-arrow-down{
+    font-size: 15px;
+}
+.tagline1{
+    line-height: ;
+    letter-spacing: -1px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.home-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    padding-left: 20px;
+    word-spacing: 5px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+.bold{
+    font-family: "Playwrite PE", cursive;
+    font-weight: 700;
+}
+
+@keyframes fadeInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.org1 {
+    animation: fadeInFromLeft 2s ease-in-out; 
+}
+
+@keyframes fadeInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.org2 {
+    animation: fadeInFromTop 2s ease-in-out; 
+}
+@keyframes fadeInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.org3 {
+    animation: fadeInFromRight 2s ease-in-out; 
+}
+
+@keyframes upDown {
+    0%, 100% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.arrow-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.fixed{
+    position: fixed;
+    width: 100%;
+}
+
+.logotext{
+    text-decoration: none;
+    color: black;
+}
+
+.logotexxt{
+    text-decoration: none;
+    color: black;
+}

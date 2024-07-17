@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+.homepage2{
+    position: absolute;
+    height: 95vh;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 100vh;
+    background-color: black;
+    /* color: wheat; */
+    z-index: 800;
+    width: 100%;
+    color: white;
+}
+
+.houseimg2{
+    width: 600px;
+}
+.houseimg2mob{
+    /* width: 300px; */
+    display: none;
+}
+
+.home2text{
+    color: white;
+}
+
+.mainhome2{
+    padding-right: 140px;
+    padding-left: 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+
+}
+
+.home2text{
+    display: flex;
+    flex-direction: column;
+    font-size: 100px;
+    font-family: "Oswald", sans-serif;
+    /* font-family: "Allerta Stencil", sans-serif; */
+    letter-spacing: -4px;
+    font-weight: 700;
+    word-spacing: -10px;
+    /* gap: -50px; */
+  
+    
+}
+.second{
+    margin-top: -20px;
+    border-bottom: 1px solid white;
+    padding-bottom: 2px;
+    display: inline;
+}
+.third{
+    margin-top: -30px;
+    border-bottom: 1px solid white;
+    padding-bottom: 2px;
+    display: inline;
+}
+.third:hover{
+    cursor: url('../assets/logo.png') , auto;
+    /* font-size: 80px; */
+}
+.second:hover{
+    cursor: url('../assets/logo.png') , auto;
+}
+.first:hover{
+    cursor: url('../assets/logo.png') , auto;
+}
+p{
+    margin: 0;
+    border-bottom: 1px solid white;
+    padding-bottom: 2px;
+    display: inline;
+}
+.btns{
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+
+}
+.home2btn{
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+}
+.home2btn:hover{
+    background-color: #ff875f;
+    color: white;
+    border: none;
+    transition: all 0.3s;
+    cursor: pointer;
+   
+}
+.home2arrow{
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    width: 50px ;
+    height: 50px;
+    border-radius: 50%;
+    animation: slide 1s ease-in-out infinite;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0px); /* Start slightly off to the left */
+    }
+
+    25% {
+        transform: translateX(10px);     /* Return to original position */
+    }
+    50% {
+        transform: translateX(0px);     /* Return to original position */
+    }
+ 
+
+}
+
+
+@media screen and (max-width: 768px)  {
+    .houseimg2mob{
+        width: 390px;
+        display: block;
+    }
+    .mainhome2{
+        flex-direction: column;
+    }
+    .home2text{
+        /* margin-left: -100px; */
+        margin-right: 50px;
+        margin-left: 50px;
+        width: 90vw;
+    }
+    .home2text{
+        word-spacing: 2px;
+    }
+}

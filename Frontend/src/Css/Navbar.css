@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Playwrite+PE:wght@100..400&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.navbar{
+    padding-top: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-left: 20px;
+    /* background-color: rgb(197, 194, 188); */
+    align-items: center;
+    position: fixed;
+    width: 97vw;
+    z-index: 1000;
+}
+
+.bi-person{
+    font-size: 25px;
+}
+
+.getstarted{
+    padding: 8px;
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.rightnav{
+    display: flex;
+    gap: 20px;
+}
+
+.getstarted:hover{
+    color: white;
+    background-color: #ff875f;
+    transition: all 0.3s;
+    border: none;
+}
+
+.logo{
+    width: 30px;
+    height: 30px;
+}
+.logoname{
+    display: flex;
+    font-family: "Playwrite PE", cursive;
+    gap: 5px;
+    align-items: center;
+}
+
+.logotext{
+    padding: 0;
+    margin: 0;
+}
+
+.registerlink{
+    text-decoration: none;
+    color: black;
+}
+.registerlink2{
+    text-decoration: none;
+    color: white;
+}
+.navlink{
+    padding-right: 20px;
+
+}
