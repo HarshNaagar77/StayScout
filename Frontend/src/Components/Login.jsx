@@ -51,7 +51,7 @@ function LoginPage() {
       <form className=' form' onSubmit={handleLogin}>
         <div>
           <label htmlFor='email'>Email:</label>
-          <input className='email'
+          <input className='email' placeholder='Enter your email'
             type='email'
             id='email'
             value={email}
@@ -62,7 +62,7 @@ function LoginPage() {
         </div>
         <div>
           <label htmlFor='password'>Password:</label>
-          <input className='password'
+          <input className='password' placeholder='Enter your password'
             type='password'
             id='password'
             value={password}

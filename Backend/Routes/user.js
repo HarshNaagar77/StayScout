@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    place: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'places'
+      }],
 });
 
 const user = mongoose.model('user', userSchema);

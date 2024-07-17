@@ -3,6 +3,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const User = require('./Routes/user');
+const Place = require('./Routes/places')
 const jwt = require('jsonwebtoken');
 
 const app = express();
@@ -54,6 +55,8 @@ app.post('/registeruser', async (req, res) => {
   }
 });
 
+
+
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -89,11 +92,31 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.post('/addplace', async function(req ,res){
+  const {name, location, description, price, image} = req.body;
+  const newPlace = await Place.create({
+    name,
+    location,
+    description,
+    price,
+    image
+  });
+  
+  // let find = await User.findOne({ _id : req.user._id})
+  // find.place.push(newPlace._id)
+  // await find.save()
+  res.send(`done`)
+  res.status(201).json(newPlace);
+
+
+})
+
 
 
 app.post('/logout', (req, res) => {
   res.clearCookie('token').status(200).json({ message: 'Logged out successfully' });
 })
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

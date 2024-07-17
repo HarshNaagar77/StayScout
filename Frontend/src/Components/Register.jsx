@@ -59,7 +59,7 @@ function RegisterForm() {
       <div>
       <h2 className='register'>Register</h2>
       <Link to='/login'>
-      <button type='submit' className='demo'>Not have an account ? <span className=' loginbtn'>Login</span></button>
+      <button type='submit' className='demo'>Already have an account ? <span className=' loginbtn'>Login</span></button>
       </Link>
       </div>
       <form className='form1' onSubmit={submitHandler}>

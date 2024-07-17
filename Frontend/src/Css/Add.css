@@ -1,0 +1,7 @@
+.add__container{
+    padding-top: 100px;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
