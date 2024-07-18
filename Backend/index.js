@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
-const User = require('./Routes/user');
-const Place = require('./Routes/places')
 const jwt = require('jsonwebtoken');
+const User = require('./Routes/user');
+const Place = require('./Routes/places');
 
 const app = express();
 app.use(cookieParser());
@@ -12,9 +12,10 @@ app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
 }));
-app.use(express.json()); // Updated to use express.json()
+app.use(express.json());
 
-const PORT = 3000
+const PORT = 3000;
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
@@ -45,7 +46,6 @@ app.post('/registeruser', async (req, res) => {
         console.error('JWT Error:', err);
         return res.status(500).json({ message: 'Error creating token', error: err.message });
       }
-      // Added httpOnly flag to the cookie options
       res.cookie('token', token, { httpOnly: true }).status(201).json({ message: 'User registered successfully', token });
     });
 
@@ -55,34 +55,28 @@ app.post('/registeruser', async (req, res) => {
   }
 });
 
-
-
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if the user exists in the database
     const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(400).json({ message: 'User with this email does not exist' });
     }
 
-    // Compare the provided password with the hashed password in the database
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
       return res.status(400).json({ message: 'Invalid password' });
     }
 
-    // Password is correct, generate a JWT token
     jwt.sign({ email: user.email }, 'shhh', {}, (err, token) => {
       if (err) {
         console.error('JWT Error:', err);
         return res.status(500).json({ message: 'Error creating token', error: err.message });
       }
 
-      // Set the token in a httpOnly cookie
       res.cookie('token', token, { httpOnly: true }).status(200).json({ message: 'Login successful', token });
     });
 
@@ -92,31 +86,48 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/addplace', async function(req ,res){
-  const {name, location, description, price, image} = req.body;
-  const newPlace = await Place.create({
-    name,
-    location,
-    description,
-    price,
-    image
+app.post('/addplace', async (req, res) => {
+  const { token } = req.cookies;
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  jwt.verify(token, 'shhh', async (err, userData) => {
+    if (err) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    const { name, location, description, price, image , } = req.body;
+    try {
+      const user = await User.findOne({ email: userData.email });
+      if (!user) {
+        return res.status(400).json({ message: 'User not found' });
+      }
+
+      await user.save();
+      const newPlace = new Place({
+        name,
+        location,
+        description,
+        price,
+        image,
+        user : user._id
+      });
+      await newPlace.save();
+      user.place.push(newPlace._id);
+
+
+      res.status(201).json({ message: 'Place added successfully', newPlace });
+    } catch (error) {
+      console.error('Error adding place:', error);
+      res.status(500).json({ message: 'Failed to add place', error: error.message });
+    }
   });
-  
-  // let find = await User.findOne({ _id : req.user._id})
-  // find.place.push(newPlace._id)
-  // await find.save()
-  res.send(`done`)
-  res.status(201).json(newPlace);
-
-
-})
-
-
+});
 
 app.post('/logout', (req, res) => {
   res.clearCookie('token').status(200).json({ message: 'Logged out successfully' });
-})
-
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
