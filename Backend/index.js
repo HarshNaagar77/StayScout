@@ -3,6 +3,8 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const path = require('path');
 const User = require('./Routes/user');
 const Place = require('./Routes/places');
 
@@ -15,6 +17,17 @@ app.use(cors({
 app.use(express.json());
 
 const PORT = 3000;
+
+// Multer configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'upload/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage });
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -86,7 +99,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/addplace', async (req, res) => {
+app.post('/addplace', upload.single('image'), async (req, res) => {
   const { token } = req.cookies;
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized' });
@@ -97,25 +110,32 @@ app.post('/addplace', async (req, res) => {
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    const { name, location, description, price, image , } = req.body;
+    const { name, location, description, price, services, category, checkIn, checkOut, additional } = req.body;
+    const image = req.file;
+
     try {
       const user = await User.findOne({ email: userData.email });
       if (!user) {
         return res.status(400).json({ message: 'User not found' });
       }
 
-      await user.save();
       const newPlace = new Place({
         name,
         location,
         description,
         price,
-        image,
-        user : user._id
+        services: JSON.parse(services),  // Parse services from JSON
+        image: image ? image.filename : null,
+        user: user._id,
+        category: category, // Store category as a string
+        checkIn,
+        checkOut,
+        additional: JSON.parse(additional),  // Parse additional details from JSON
       });
       await newPlace.save();
-      user.place.push(newPlace._id);
 
+      user.place.push(newPlace._id);
+      await user.save();
 
       res.status(201).json({ message: 'Place added successfully', newPlace });
     } catch (error) {

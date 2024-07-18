@@ -42,15 +42,26 @@ input{
     margin-top: 10px;
 
 }
+textarea{
+    padding: 8px;
+    border-radius: 20px;
+    /* border: none; */
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    width: 610px;
+    resize: none;
+    outline: none;
+    margin-top: 10px;
+
+}
 .submit{
     padding: 8px;
     border-radius: 20px;
     border: none;
-    width: 616px;
+    width: 631px;
     background-color: transparent;
     color: black;
     cursor: pointer;
-    border: 3px solid orange;
+    border: 2px solid orange;
     margin-top: 20px;
 }
 .demo{
@@ -61,7 +72,7 @@ input{
     background-color: transparent;
     color: black;
     cursor: pointer;
-    border: 3px solid orange;
+    border: 2px solid orange;
     margin-top: 30px;
 }
 .form1{
@@ -70,4 +81,9 @@ input{
 
 .form{
     margin-top: -10px;
+}
+input {
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Light border with reduced opacity */
+    padding-left: 20px;
+
 }
