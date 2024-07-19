@@ -39,15 +39,15 @@ h1{
     top: -10vh;
     left: 20vw;
 }
-/* .scout:hover{
-    cursor: url('../assets/imresizer-1721401827059.jpg') , auto;
+.scout:hover{
+    cursor: url('../assets/logo3.png') , auto;
 }
 .for:hover{
-    cursor: url('../assets/logo2.png') , auto;
+    cursor: url('../assets/logo3.png') , auto;
 }
 .comfort:hover{
-    cursor: url('../assets/logo2.png') , auto;
-} */
+    cursor: url('../assets/logo3.png') , auto;
+}
 .for{
     position: absolute;
     /* top: -10vh; */

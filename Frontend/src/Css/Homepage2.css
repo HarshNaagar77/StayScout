@@ -60,14 +60,14 @@
     display: inline;
 }
 .third:hover{
-    cursor: url('../assets/logo.png') , auto;
+    cursor: url('../assets/logo3.png') , auto;
     /* font-size: 80px; */
 }
 .second:hover{
-    cursor: url('../assets/logo.png') , auto;
+    cursor: url('../assets/logo3.png') , auto;
 }
 .first:hover{
-    cursor: url('../assets/logo.png') , auto;
+    cursor: url('../assets/logo3.png') , auto;
 }
 p{
     margin: 0;
@@ -90,7 +90,7 @@ p{
     color: white;
 }
 .home2btn:hover{
-    background-color: #ff875f;
+    background-color: #a165dc;
     color: white;
     border: none;
     transition: all 0.3s;

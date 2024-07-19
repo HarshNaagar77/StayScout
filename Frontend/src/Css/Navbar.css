@@ -49,7 +49,7 @@ ul{
 }
 
 .getstarted:hover{
-    color: white;
+
     background-color: #CF9FFF;
     transition: all 0.3s;
     border: none;
@@ -87,3 +87,4 @@ ul{
 .rightnav{
     margin-right: 80px;
 }
+

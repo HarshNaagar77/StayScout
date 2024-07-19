@@ -134,3 +134,9 @@ textarea{
     background-color: #ff1a1a;
   }
   
+  .addhead{
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 0;
+    margin-top: -28px;
+  }
