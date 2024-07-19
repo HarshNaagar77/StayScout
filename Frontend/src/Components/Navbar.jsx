@@ -1,6 +1,6 @@
 import React from 'react'
 import '../Css/Navbar.css';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo3.png'
 import { Link } from 'react-router-dom';
 
 
@@ -14,7 +14,7 @@ export default function Navbar(props) {
       <div>
         <ul>
           <li><Link to='/' className='navlink navlink1 registerlink'>{props.text}</Link></li>
-          <li><Link to='/add' className='navlink registerlink'>{props.text2}</Link></li>
+          <li><Link to='/add' className='navlink navlink2 registerlink'>{props.text2}</Link></li>
         </ul>
         </div>
       <div className='rightnav'>

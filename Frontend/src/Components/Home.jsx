@@ -4,23 +4,23 @@ import House from '../assets/house.png'
 import '../Css/Home_mobile.css'
 
 
-function Home() {
+function Home(props) {
   return (
     <div className='fixed' id='home'>
     
     <div className='home'>
 
         <div className='scout'>
-        <h1 className='org1'>Scout</h1>
-        <h1 className='stroke'>Scout</h1>
+        <h1 className='org1'>{props.first}</h1>
+        <h1 className='stroke'>{props.first}</h1>
         </div>
         <div className="for">
-            <h1 className='org2'>For</h1>
-            <h1 className='stroke'>For</h1>
+            <h1 className='org2'>{props.second}</h1>
+            <h1 className='stroke'>{props.second}</h1>
         </div>
         <div className="comfort">
-            <h1 className='org3'>Comfort</h1>
-            <h1 className='stroke'>Comfort.</h1>
+            <h1 className='org3'>{props.third}</h1>
+            <h1 className='stroke'>{props.third}.</h1>
         </div>
           <img className='houseimg' src={House} alt="" />
     </div>

@@ -110,7 +110,7 @@ app.post('/addplace', upload.single('image'), async (req, res) => {
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    const { name, location, description, price, services, category, checkIn, checkOut, additional } = req.body;
+    const { name, location, description, price, services, category, checkIn, checkOut, additional , guest } = req.body;
     const image = req.file;
 
     try {
@@ -124,6 +124,7 @@ app.post('/addplace', upload.single('image'), async (req, res) => {
         location,
         description,
         price,
+        guest ,
         services: JSON.parse(services),  // Parse services from JSON
         image: image ? image.filename : null,
         user: user._id,

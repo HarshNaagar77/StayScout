@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import '../Css/Add.css';
 import Navbar from './Navbar';
 import axios from 'axios';
+import add from '../assets/houseimg2.png'
 
 export default function Add() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
+  const [guest, setGuest] = useState('');
   const [image, setImage] = useState(null);
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -16,7 +18,6 @@ export default function Add() {
   const [additional, setAdditional] = useState('');
   const [additionalDetails, setAdditionalDetails] = useState([]);
 
-  // List of available services
   const services = [
     'Wi-Fi',
     'Parking',
@@ -26,8 +27,6 @@ export default function Add() {
     'Room Service',
     'Laundry Service',
     'Spa',
-    'Business Center',
-    'Airport Shuttle'
   ];
 
   const categories = ['Daily', 'Monthly', 'Yearly', 'Permanent'];
@@ -68,6 +67,7 @@ export default function Add() {
     formData.append('description', description);
     formData.append('location', location);
     formData.append('price', price);
+    formData.append('guest', guest);
     formData.append('services', JSON.stringify(selectedServices));
     formData.append('category', selectedCategory);
     formData.append('checkIn', checkIn);
@@ -105,86 +105,151 @@ export default function Add() {
   return (
     <div className='add'>
       <Navbar text='Feed' text2='Add' hideStartButton={true} />
-      <div className='add__container'>
-        <h2>Add a new post</h2>
-        <form onSubmit={placeAdder}>
-          Name
-          <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
-          <br />
-          Description
-          <textarea  className=''
-            value={description} 
-            onChange={(e) => setDescription(e.target.value)} 
-            rows={4} // Adjust the number of rows as needed
-            cols={50} // Adjust the number of columns as needed
-          />
-          <br />
-          Location
-          <input type='text' value={location} onChange={(e) => setLocation(e.target.value)} />
-          <br />
-          Price
-          <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} />
-          <br />
-          Services
-          <div>
-            {services.map((service) => (
-              <label key={service}>
-                <input
-                  type='checkbox'
-                  value={service}
-                  checked={selectedServices.includes(service)}
-                  onChange={handleServiceChange}
-                />
-                {service}
-              </label>
-            ))}
-          </div>
-          <br />
-          Category
-          <div>
-            {categories.map((category) => (
-              <label key={category}>
-                <input
-                  type='radio'
-                  name='category'
-                  value={category}
-                  checked={selectedCategory === category}
-                  onChange={handleCategoryChange}
-                />
-                {category}
-              </label>
-            ))}
-          </div>
-          <br />
-          Check-In Time
-          <input type='time' value={checkIn} onChange={(e) => setCheckIn(e.target.value)} />
-          <br />
-          Check-Out Time
-          <input type='time' value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
-          <br />
-          Image
-          <input type='file' onChange={(e) => setImage(e.target.files[0])} />
-          <br />
-          Additional Details
-          <input
-            type="text"
-            value={additional}
-            onChange={(e) => setAdditional(e.target.value)}
-            onKeyDown={handleAdditionalKeyDown}
-          />
-          <div className="additional-list">
-            {additionalDetails.map((detail, index) => (
-              <div key={index} className="additional-item">
-                {detail}
-                <button type="button" onClick={() => handleAdditionalDelete(index)}>Delete</button>
+      <div className="outside">
+        <img src={add} alt="" className='addimg' />
+
+        <div className="mainadd">
+          <div className="addbg"></div>
+
+          <form onSubmit={placeAdder} className='addform'>
+            <label>
+              Title
+              <input
+                className='input'
+                type='text'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder='Enter the title'
+              />
+            </label>
+            <br />
+            <label>
+              Description
+              <textarea
+                className=''
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows={4}
+                cols={50}
+                placeholder='Enter the description'
+              />
+            </label>
+            <br />
+            <label>
+              Location
+              <input
+                type='text'
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder='Enter the location'
+              />
+            </label>
+            <br />
+            <label>
+              Price (in Rupees)
+              <input
+                type='text'
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                placeholder='Enter the price'
+              />
+            </label>
+            <br />
+            <div className="category">
+              Category
+              <div className='catinput'>
+                {categories.map((category) => (
+                  <label key={category}>
+                    <input
+                      type='radio'
+                      name='category'
+                      value={category}
+                      checked={selectedCategory === category}
+                      onChange={handleCategoryChange}
+                    />
+                    {category}
+                  </label>
+                ))}
               </div>
-            ))}
-          </div>
-          <br />
-          <button className='submit' type='submit'>
-            Submit
-          </button>
-        </form>
+            </div>
+
+            <div>
+              Services
+              <div className='services'>
+                {services.map((service) => (
+                  <label key={service}>
+                    <input
+                      type='checkbox'
+                      value={service}
+                      checked={selectedServices.includes(service)}
+                      onChange={handleServiceChange}
+                    />
+                    {service}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <br />
+            <label>
+              Number of guests
+              <input
+                type='text'
+                value={guest}
+                onChange={(e) => setGuest(e.target.value)}
+                placeholder='Enter the number of guests'
+              />
+            </label>
+            <br />
+            <label>
+              Check-In Time
+              <input
+                type='time'
+                value={checkIn}
+                onChange={(e) => setCheckIn(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Check-Out Time
+              <input
+                type='time'
+                value={checkOut}
+                onChange={(e) => setCheckOut(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Image
+              <input
+                type='file'
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </label>
+            <br />
+            <label>
+              Additional Details
+              <input
+                type="text"
+                value={additional}
+                onChange={(e) => setAdditional(e.target.value)}
+                onKeyDown={handleAdditionalKeyDown}
+                placeholder='Enter additional details and press Enter'
+              />
+            </label>
+            <div className="additional-list">
+              {additionalDetails.map((detail, index) => (
+                <div key={index} className="additional-item">
+                  {detail}
+                  <button type="button" onClick={() => handleAdditionalDelete(index)}>X</button>
+                </div>
+              ))}
+            </div>
+            <br />
+            <button className='submit addsubmit' type='submit'>
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

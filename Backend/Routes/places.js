@@ -7,6 +7,7 @@ const placesSchema = new mongoose.Schema({
     location : String,
     services : [String] ,
     price : Number,
+    guest : Number ,
     category : [String] ,
     checkIn : String ,
     checkOut : String,
@@ -14,7 +15,7 @@ const placesSchema = new mongoose.Schema({
     additional : [String],
     user: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'user' 
       }],
     
 });

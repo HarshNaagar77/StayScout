@@ -1,7 +1,136 @@
-.add__container{
-    padding-top: 100px;
-    padding-left: 50px;
-    display: flex;
-    flex-direction: column;
-    width: 500px;
+body{
+    overflow-x: hidden;
 }
+.outside{
+    padding-top: 150px;
+    /* overflow: hidden; */
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    overflow-x: hidden;
+    padding-left: 70px;
+
+}
+.addform {
+    /* padding-top: 100px; */
+    background-color: orange;
+    height: 70vh;
+    /* overflow: auto; */
+    /* width: 800px; */
+    /* width: 500px; */
+  }
+  
+.addimg{
+    height: 600px;
+    width: 600px;
+    position: fixed;
+    /* background-color: black; */
+}
+
+  
+  .addform {
+    width: 100%;
+    max-width: 700px;
+    margin-top: -50px;
+    margin-left: 610px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    padding-right: 50px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .addform input,
+  .addform textarea{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .addsubmit{
+    border: 2px solid #a165dc;
+    transition: all 0.5s;
+    width: 720px;
+  }
+  .addsubmit:hover{
+    background:  #a165dc;
+    color: white;
+
+  }
+
+  .services {
+    /* border: 2px solid #ee7878; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four columns */
+    gap: 10px;
+    text-align: left;
+    padding-left: 20px;
+    width: 600px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    background-color: #f1e5fb;
+  }
+  
+  .services label {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 5px; /* Adjust the gap between checkbox and text if needed */
+  }
+
+.catinput{
+    background-color:  #efdfff;
+    display: flex;
+    gap: 90px;
+    width: 620px;
+    padding-top: 20px;
+    justify-content: center;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    background-color: #ede3f7;
+
+}
+
+textarea{
+    font-family: sans-serif;
+}
+
+
+  
+  .additional-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    width: 710px;
+  }
+  
+  .additional-item:last-child {
+    border-bottom: none;
+  }
+  
+  .additional-item button {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .additional-item button:hover {
+    background-color: #ff1a1a;
+  }
+  

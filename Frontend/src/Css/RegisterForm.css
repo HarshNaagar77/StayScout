@@ -61,7 +61,7 @@ textarea{
     background-color: transparent;
     color: black;
     cursor: pointer;
-    border: 2px solid orange;
+    border: 2px solid #a165dc;
     margin-top: 20px;
 }
 .demo{
@@ -72,7 +72,7 @@ textarea{
     background-color: transparent;
     color: black;
     cursor: pointer;
-    border: 2px solid orange;
+    border: 2px solid #a165dc;
     margin-top: 30px;
 }
 .form1{
@@ -83,7 +83,8 @@ textarea{
     margin-top: -10px;
 }
 input {
-    border: 1px solid rgba(0, 0, 0, 0.3); /* Light border with reduced opacity */
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Light border with reduced opacity */
+    border-radius: 10px;
     padding-left: 20px;
 
 }

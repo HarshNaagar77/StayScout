@@ -7,10 +7,11 @@ body{
 .houseimg{
     width: 600px;
     margin-top: 50px;
-    z-index: 3;
+    z-index: 0;
 }
 
 .home{
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,15 +39,15 @@ h1{
     top: -10vh;
     left: 20vw;
 }
-.scout:hover{
-    cursor: url('../assets/logo.png') , auto;
+/* .scout:hover{
+    cursor: url('../assets/imresizer-1721401827059.jpg') , auto;
 }
 .for:hover{
-    cursor: url('../assets/logo.png') , auto;
+    cursor: url('../assets/logo2.png') , auto;
 }
 .comfort:hover{
-    cursor: url('../assets/logo.png') , auto;
-}
+    cursor: url('../assets/logo2.png') , auto;
+} */
 .for{
     position: absolute;
     /* top: -10vh; */
@@ -84,8 +85,8 @@ h1{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 100px;
+    padding-left: 100px;
     word-spacing: 5px;
     padding-bottom: 0;
     margin-bottom: 0;

@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Navbar start = {'Get Started'}/>
-      <Home />
+      <Home first = {"Scout"} second = {'For'} third = {'Comfort'}/>
       <Homepage2 />
     </div>
   );
