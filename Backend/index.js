@@ -10,6 +10,7 @@ const Place = require('./Routes/places');
 
 const app = express();
 app.use(cookieParser());
+app.use(express.static('public'))
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
@@ -21,7 +22,7 @@ const PORT = 3000;
 // Multer configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'upload/');
+    cb(null, 'public/uploads');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -110,7 +111,7 @@ app.post('/addplace', upload.single('image'), async (req, res) => {
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    const { name, location, description, price, services, category, checkIn, checkOut, additional , guest } = req.body;
+    const { title, location, description, price, services, category, checkIn, checkOut, additional , guest } = req.body;
     const image = req.file;
 
     try {
@@ -120,7 +121,7 @@ app.post('/addplace', upload.single('image'), async (req, res) => {
       }
 
       const newPlace = new Place({
-        name,
+        title,
         location,
         description,
         price,
@@ -145,6 +146,14 @@ app.post('/addplace', upload.single('image'), async (req, res) => {
     }
   });
 });
+
+app.get('/render' , async function(req ,res){
+  const r1 = await Place.find()
+  res.send(r1)
+  console.log(r1)
+
+})
+
 
 app.post('/logout', (req, res) => {
   res.clearCookie('token').status(200).json({ message: 'Logged out successfully' });

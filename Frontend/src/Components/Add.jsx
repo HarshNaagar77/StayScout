@@ -5,7 +5,7 @@ import axios from 'axios';
 import add from '../assets/houseimg2.png';
 
 export default function Add() {
-  const [name, setName] = useState('');
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
@@ -30,7 +30,7 @@ export default function Add() {
     'Spa',
   ];
 
-  const categories = ['Daily', 'Monthly', 'Yearly', 'Permanent'];
+  const categories = ['Day', 'Month', 'Year', 'Permanent'];
 
   const handleServiceChange = (e) => {
     const { value, checked } = e.target;
@@ -64,7 +64,7 @@ export default function Add() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('name', name);
+    formData.append('title', title);
     formData.append('description', description);
     formData.append('location', location);
     formData.append('price', price);
@@ -91,7 +91,7 @@ export default function Add() {
       });
 
     // Clear form
-    setName('');
+    setTitle('');
     setDescription('');
     setLocation('');
     setPrice('');
@@ -102,6 +102,10 @@ export default function Add() {
     setCheckIn('');
     setCheckOut('');
     setAdditionalDetails([]);
+    const pop = document.querySelector('.popup')
+    pop.style.display = 'block'
+
+
   };
 
   const handleImageChange = (e) => {
@@ -115,9 +119,36 @@ export default function Add() {
     }
   };
 
+  const dismissal = () =>{
+    const pop = document.querySelector('.popup')
+    pop.style.display = 'none'
+  }
+
   return (
     <div className='add'>
       <Navbar text='Feed' text2='Add' hideStartButton={true} />
+      <div className="popup">
+        
+      <div class="card"> 
+      <button type="button" className="dismiss" onClick={dismissal}>×</button> 
+      <div class="header"> 
+      <div class="image">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#000000" d="M20 7L9.00004 18L3.99994 13"></path> </g></svg>
+      </div> 
+      <div class="content">
+         <span class="title">Place validated</span>
+         <br /> 
+         <p class="message">Your listing has been successfully updated and is now live. Thank you for contributing! Others can now view and explore it.</p> 
+         </div> 
+         <div class="actions">
+            <button type="button" className="history" onClick={dismissal}>Ok</button> 
+            {/* <button type="button" class="track">Track my package</button>  */}
+            </div> 
+            </div> 
+            </div>
+
+
+      </div>
       <div className="outside">
         <img src={add} alt="" className='addimg' />
 
@@ -131,8 +162,8 @@ export default function Add() {
               <input
                 className='input'
                 type='text'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder='Enter the title'
               />
             </label>
@@ -170,7 +201,7 @@ export default function Add() {
             </label>
             <br />
             <div className="category">
-              Category
+              Category (per)
               <div className='catinput'>
                 {categories.map((category) => (
                   <label key={category}>

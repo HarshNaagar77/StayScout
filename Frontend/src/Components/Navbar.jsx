@@ -13,7 +13,7 @@ export default function Navbar(props) {
       </div>
       <div>
         <ul>
-          <li><Link to='/' className='navlink navlink1 registerlink'>{props.text}</Link></li>
+          <li><Link to='/feed' className='navlink navlink1 registerlink'>{props.text}</Link></li>
           <li><Link to='/add' className='navlink navlink2 registerlink'>{props.text2}</Link></li>
         </ul>
         </div>

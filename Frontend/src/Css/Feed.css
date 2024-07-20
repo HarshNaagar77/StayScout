@@ -1,3 +1,47 @@
 .logout{
     padding-top: 200px;
 }
+.feedimg{
+    border-radius: 10px;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.place{
+    /* border: 1px solid black; */
+    width: 300px;
+    padding: 20px;
+    /* padding-left: 30px; */
+    /* margin-left: 50px; */
+    display: flex;
+    flex-direction: column;
+}
+.feedtitle{
+    font-size: 30px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+}
+.feedlocation{
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 10px;
+}
+.feedguest{
+    margin: 0;
+}
+.feedprice{
+    margin: 0;
+}
+
+.places{
+    display: flex;
+    padding-top: 100px;
+    flex-wrap: wrap;
+    gap:0px;
+    /* border: 2px solid black; */
+    width: 100vw;
+    justify-content: center;
+
+}
