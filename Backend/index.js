@@ -155,6 +155,7 @@ app.get('/render' , async function(req ,res){
 })
 
 
+
 app.post('/logout', (req, res) => {
   res.clearCookie('token').status(200).json({ message: 'Logged out successfully' });
 });

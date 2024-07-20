@@ -1,0 +1,34 @@
+@media screen and (max-width: 768px) {
+.feedimg{
+    width: 180px;
+    height: 180px;
+}
+.place{
+    width: 150px;
+}
+.places{
+    margin: 0;
+}
+.feedtitle{
+    font-size: 20px;
+}
+.feeddesc{
+    font-size: 15px;
+}
+.feedprice{
+    font-size: 15px;
+}
+.feeddate{
+    font-size: 15px;
+}
+.navlink1{
+    padding-left: 100px;
+}
+.navlink2{
+    padding-left: 30px;
+}
+.navbar{
+    padding-left: 30px;
+}
+
+}
