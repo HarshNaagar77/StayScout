@@ -27,7 +27,7 @@ body{
     /* background-color: black; */
 }
 
-  
+
   .addform {
     width: 100%;
     max-width: 700px;
@@ -51,12 +51,12 @@ body{
   }
   
   .addsubmit{
-    border: 2px solid #a165dc;
+    border: 2px solid #084cdf;
     transition: all 0.5s;
     width: 720px;
   }
   .addsubmit:hover{
-    background:  #a165dc;
+    background:  #084cdf;
     color: white;
 
   }
@@ -71,9 +71,10 @@ body{
     width: 600px;
     padding-top: 20px;
     padding-bottom: 20px;
+    border: 2px dashed rgb(171, 202, 255);
     border-radius: 20px;
     margin-top: 20px;
-    background-color: #f1e5fb;
+    background-color: rgb(216, 230, 255);
   }
   
   .services label {
@@ -84,7 +85,7 @@ body{
   }
 
 .catinput{
-    background-color:  #efdfff;
+    /* background-color:  #efdfff; */
     display: flex;
     gap: 90px;
     width: 620px;
@@ -93,7 +94,8 @@ body{
     padding-bottom: 20px;
     border-radius: 20px;
     margin-top: 20px;
-    background-color: #ede3f7;
+    border: 2px dashed rgb(171, 202, 255);
+    background-color: rgb(216, 230, 255);
 
 }
 
@@ -139,4 +141,95 @@ textarea{
     font-weight: 600;
     padding-top: 0;
     margin-top: -28px;
+  }
+  
+
+  .form-title {
+    color: #000000;
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+  
+  .form-paragraph {
+    margin-top: 10px;
+    font-size: 0.9375rem;
+    color: rgb(105, 105, 105);
+  }
+  
+  .drop-container {
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 2.1875rem;
+    border-radius: 10px;
+    border: 2px dashed rgb(171, 202, 255);
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+  }
+  
+  .drop-container:hover {
+    background: rgba(0, 140, 255, 0.164);
+    border-color: rgba(17, 17, 17, 0.616);
+  }
+  
+  .drop-container:hover .drop-title {
+    color: #222;
+  }
+  
+  .drop-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+  }
+  
+  #file-input {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 2px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(8, 8, 8, 0.288);
+  }
+  
+  #file-input::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  #file-input::file-selector-button:hover {
+    background: #0d45a5;
+  }
+  
+  input:focus {
+    border: 2px solid #5182d7; /* You can adjust the width and style as needed */
+    outline: none; /* Optional: Removes the default focus outline */
+  }
+  
+  .addhead{
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 0;
+    margin-top: -28px;
+  }
+
+  .imgpre{
+    display: flex;
+    width: 200px;
+    border-radius: 10px;
+    margin-top: 20px;
   }

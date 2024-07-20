@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../Css/Add.css';
 import Navbar from './Navbar';
 import axios from 'axios';
-import add from '../assets/houseimg2.png'
+import add from '../assets/houseimg2.png';
 
 export default function Add() {
   const [name, setName] = useState('');
@@ -11,6 +11,7 @@ export default function Add() {
   const [price, setPrice] = useState('');
   const [guest, setGuest] = useState('');
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null); // State for image preview URL
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [checkIn, setCheckIn] = useState('');
@@ -95,11 +96,23 @@ export default function Add() {
     setLocation('');
     setPrice('');
     setImage(null);
+    setImagePreview(null); // Clear image preview
     setSelectedServices([]);
     setSelectedCategory('');
     setCheckIn('');
     setCheckOut('');
     setAdditionalDetails([]);
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+      setImagePreview(URL.createObjectURL(file));
+    } else {
+      setImage(null);
+      setImagePreview(null);
+    }
   };
 
   return (
@@ -112,6 +125,7 @@ export default function Add() {
           <div className="addbg"></div>
 
           <form onSubmit={placeAdder} className='addform'>
+            <h2 className='addhead'>Add Your Place</h2>
             <label>
               Title
               <input
@@ -218,13 +232,20 @@ export default function Add() {
               />
             </label>
             <br />
-            <label>
-              Image
-              <input
-                type='file'
-                onChange={(e) => setImage(e.target.files[0])}
-              />
+            <span className="form-title">Upload your file</span>
+            <p className="form-paragraph">
+              File should be an image
+            </p>
+            <label className="drop-container">
+              <span className="drop-title">Drop files here</span>
+              or
+              <input type='file' onChange={handleImageChange} id="file-input" />
             </label>
+            {imagePreview && (
+              <div className="image-preview">
+                <img src={imagePreview} alt="Preview" className='imgpre' />
+              </div>
+            )}
             <br />
             <label>
               Additional Details

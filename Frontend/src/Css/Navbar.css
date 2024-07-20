@@ -50,9 +50,10 @@ ul{
 
 .getstarted:hover{
 
-    background-color: #CF9FFF;
+    background-color: #4280eb;
     transition: all 0.3s;
     border: none;
+    color: white;
 }
 
 .logo{

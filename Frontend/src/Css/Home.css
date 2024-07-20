@@ -40,13 +40,13 @@ h1{
     left: 20vw;
 }
 .scout:hover{
-    cursor: url('../assets/logo3.png') , auto;
+    cursor: url('../assets/logo4.png') , auto;
 }
 .for:hover{
-    cursor: url('../assets/logo3.png') , auto;
+    cursor: url('../assets/logo4.png') , auto;
 }
 .comfort:hover{
-    cursor: url('../assets/logo3.png') , auto;
+    cursor: url('../assets/logo4.png') , auto;
 }
 .for{
     position: absolute;
