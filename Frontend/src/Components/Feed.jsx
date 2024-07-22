@@ -4,20 +4,9 @@ import '../Css/Feed_mobile.css';
 import axios from 'axios';
 import Navbar from './Navbar';
 
-
 export default function Feed() {
   const [posts, setPosts] = useState([]);
-
-  const logout = async () => {
-    try {
-      await axios.post('http://localhost:3000/logout');
-      localStorage.removeItem('token');
-      // Optionally, redirect user after logout
-    } catch (error) {
-      // Handle logout error
-      console.error("Logout failed:", error);
-    }
-  };
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const shuffleArray = (array) => {
@@ -38,23 +27,54 @@ export default function Feed() {
       });
   }, []);
 
+  const handleSearchChange = (event) => {
+    
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredPosts = posts.filter(post => 
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.price.toString().includes(searchQuery) ||
+    post.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.category.toString().toLowerCase().includes(searchQuery.toLowerCase()) // Ensure category is a string
+  );
+
   return (
     <div className='feed'>
-      <Navbar text='Feed' text2='Add' hideStartButton={true} />
-      {/* <div className="logout">
-        <button onClick={logout} className='logout-button'>Logout</button>
-      </div> */}
-
+      <Navbar 
+        text='Feed' 
+        text2='Add' 
+        hideStartButton={true} 
+        searchQuery={searchQuery}
+        onSearchChange={handleSearchChange}
+      />
       <div className="places">
-        {posts.map((post, index) => (
-          <div key={index} className="place">
-            <img className="feedimg" src={`http://localhost:3000/uploads/${post.image}`} alt="place" />
-            <h3 className="feedtitle">{post.title}</h3>
-            <h5 className="feedlocation">{post.location}</h5>
-            <p className="feedguest">{`No. of guest : ${post.guest}`}</p>
-            <p className="feedprice">{`Price : ₹${post.price} / ${post.category}`}</p>
-          </div>
-        ))}
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((post, index) => (
+            <div key={index} className="place">
+              <img className="feedimg" src={`http://localhost:3000/uploads/${post.image}`} alt="place" />
+              <div className="placecontent">
+                <div className="feedservices">
+                  {post.services.slice(0, 3).map((service, i) => (
+                    <span key={i} className="feedservice">{service}</span>
+                  ))}
+                  {post.services.length > 3 && (
+                    <span className="feedmore">+{post.services.length - 3} more</span>
+                  )}
+                </div>
+                <h3 className="feedtitle">{post.title}</h3>
+                <h5 className="feedlocation">{post.location}</h5>
+                <p className="feedguest">{`No. of guests: ${post.guest}`}</p>
+                <div className="prices">
+                  <p className="feedprice"><span className="price">₹{post.price}</span> / {post.category}</p>
+                  <p className="feedrating"><i className="bi bi-heart"></i></p>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>We couldn't find any places matching your search. Please try different keywords.</p>
+        )}
       </div>
     </div>
   );

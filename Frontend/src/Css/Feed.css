@@ -1,51 +1,97 @@
-.logout{
+.logout {
     padding-top: 200px;
 }
-.feedimg{
+
+.feedimg {
     border-radius: 10px;
     width: 300px;
     height: 300px;
     object-fit: cover;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
-.place{
-    /* border: 1px solid black; */
+
+.place {
     width: 300px;
-    padding: 20px;
-    /* padding-left: 30px; */
-    /* margin-left: 50px; */
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); 
 }
-.feedtitle{
+
+.feedtitle {
     font-size: 30px;
     font-weight: 500;
     padding: 0;
     margin: 0;
 }
-.feedlocation{
+
+.feedlocation {
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 300;
     margin: 0;
     margin-top: 10px;
-    font-weight: 300;
 }
-.feedguest{
+
+.feedguest {
     margin: 0;
     font-weight: 300;
 }
-.feedprice{
+
+.feedprice {
     margin: 0;
 }
 
-.places{
+.places {
     margin-left: 75px;
     display: flex;
     padding-top: 100px;
     flex-wrap: wrap;
-    gap:0px;
-    /* border: 2px solid black; */
+    gap: 0px;
     width: 100vw;
     justify-content: flex-start;
+}
 
+.search-bar {
+}
 
+.feedservice {
+    display: inline-block;
+    margin-right: 8px;
+    margin-top: 4px;
+    font-size: 10px;
+    padding: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 20px;
+    border: 2px solid #4280eb;
+}
+
+.feedmore {
+    font-size: 12px;
+}
+
+.placecontent {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-left: 10px;
+}
+
+.price {
+    font-weight: 500;
+}
+
+.bi-heart {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.prices {
+    display: flex;
+    justify-content: space-between;
 }

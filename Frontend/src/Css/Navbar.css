@@ -30,6 +30,7 @@ ul{
 
 .bi-person{
     font-size: 25px;
+    padding-top: 8px;
 }
 
 .getstarted{
@@ -80,12 +81,57 @@ ul{
     text-decoration: none;
     color: white;
 }
+.navlink2{
+    margin-left: 20px;
+    padding-right: 50px;
+}
+ul{
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    margin-left: 120px;
+}
 .navlink1{
-    margin-left: -100px;
-
+    margin-left: 120px;
 }
 
 .rightnav{
     margin-right: 80px;
 }
 
+.search-bar{
+    outline: none;
+    border: none;
+}
+
+.search-bar:focus{
+    /* border-bottom: 2px solid blue; */
+    border-bottom: 2px solid #5b5fc7;
+    border-radius: 4px 4px 2px 2px;
+}
+
+.search-bar input{
+    width: 200px;
+}
+
+.navlink{
+    text-decoration: none;
+    color: black;
+}
+
+.navlink.active {
+    border-bottom: 1px solid black;
+  }
+
+
+.getstarted{
+    height: 35px;
+    margin-top: 7px;
+}
+
+.getstarted:hover{
+    color: white;
+}
+.registerlink:hover{
+    color: white;
+}
