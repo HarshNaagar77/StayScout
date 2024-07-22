@@ -7,6 +7,7 @@ import Feed from './Components/Feed.jsx';
 import { ProtectedRoute } from './Components/ProtectedRoute.jsx';
 import Login from './Components/Login.jsx';
 import Add from './Components/Add.jsx';
+import PlacePage from './Components/PlacePage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,11 @@ const router = createBrowserRouter([
     element : <ProtectedRoute>
     <Add />
   </ProtectedRoute>
-  }
+  },
+  {
+    path : '/place/:id',
+    element : <PlacePage />
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

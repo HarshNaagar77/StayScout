@@ -4,8 +4,8 @@
 
 .feedimg {
     border-radius: 10px;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -13,24 +13,24 @@
 }
 
 .place {
-    width: 300px;
+    width: 250px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    margin: 20px;
+    margin: 10px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); 
 }
 
 .feedtitle {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 500;
     padding: 0;
     margin: 0;
 }
 
 .feedlocation {
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 300;
     margin: 0;
     margin-top: 10px;
@@ -39,6 +39,7 @@
 .feedguest {
     margin: 0;
     font-weight: 300;
+    font-size: 12px;
 }
 
 .feedprice {
@@ -62,7 +63,7 @@
     display: inline-block;
     margin-right: 8px;
     margin-top: 4px;
-    font-size: 10px;
+    font-size: 8px;
     padding: 8px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -71,7 +72,7 @@
 }
 
 .feedmore {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .placecontent {
@@ -94,4 +95,14 @@
 .prices {
     display: flex;
     justify-content: space-between;
+}
+
+Link{
+    text-decoration: none;
+    color: black;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }

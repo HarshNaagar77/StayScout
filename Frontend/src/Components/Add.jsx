@@ -10,8 +10,8 @@ export default function Add() {
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
   const [guest, setGuest] = useState('');
-  const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null); // State for image preview URL
+  const [images, setImages] = useState([]); // State for multiple images
+  const [imagePreviews, setImagePreviews] = useState([]); // State for image previews
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [checkIn, setCheckIn] = useState('');
@@ -35,9 +35,7 @@ export default function Add() {
   const handleServiceChange = (e) => {
     const { value, checked } = e.target;
     setSelectedServices((prev) =>
-      checked
-        ? [...prev, value]
-        : prev.filter((service) => service !== value)
+      checked ? [...prev, value] : prev.filter((service) => service !== value)
     );
   };
 
@@ -73,7 +71,9 @@ export default function Add() {
     formData.append('category', selectedCategory);
     formData.append('checkIn', checkIn);
     formData.append('checkOut', checkOut);
-    formData.append('image', image);
+    images.forEach((image) => {
+      formData.append('images', image);
+    });
     formData.append('additional', JSON.stringify(additionalDetails));
 
     axios
@@ -95,8 +95,8 @@ export default function Add() {
     setDescription('');
     setLocation('');
     setPrice('');
-    setImage(null);
-    setImagePreview(null); // Clear image preview
+    setImages([]);
+    setImagePreviews([]);
     setSelectedServices([]);
     setSelectedCategory('');
     setCheckIn('');
@@ -104,19 +104,14 @@ export default function Add() {
     setAdditionalDetails([]);
     const pop = document.querySelector('.popup')
     pop.style.display = 'block'
-
-
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);
-      setImagePreview(URL.createObjectURL(file));
-    } else {
-      setImage(null);
-      setImagePreview(null);
-    }
+    const files = Array.from(e.target.files);
+    setImages(files);
+    const previews = files.map((file) => URL.createObjectURL(file));
+    setImagePreviews(previews);
+    console.log(files)
   };
 
   const dismissal = () =>{
@@ -128,33 +123,33 @@ export default function Add() {
     <div className='add'>
       <Navbar text='Feed' text2='Add' hideStartButton={true} />
       <div className="popup">
-        
-      <div class="card"> 
-      <button type="button" className="dismiss" onClick={dismissal}>×</button> 
-      <div class="header"> 
-      <div class="image">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#000000" d="M20 7L9.00004 18L3.99994 13"></path> </g></svg>
-      </div> 
-      <div class="content">
-         <span class="title">Place validated</span>
-         <br /> 
-         <p class="message">Your listing has been successfully updated and is now live. Thank you for contributing! Others can now view and explore it.</p> 
-         </div> 
-         <div class="actions">
-            <button type="button" className="history" onClick={dismissal}>Ok</button> 
-            {/* <button type="button" class="track">Track my package</button>  */}
+        <div class="card"> 
+          <button type="button" className="dismiss" onClick={dismissal}>×</button> 
+          <div class="header"> 
+            <div class="image">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+                <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#000000" d="M20 7L9.00004 18L3.99994 13"></path>
+                </g>
+              </svg>
             </div> 
+            <div class="content">
+              <span class="title">Place validated</span>
+              <br /> 
+              <p class="message">Your listing has been successfully updated and is now live. Thank you for contributing! Others can now view and explore it.</p> 
             </div> 
-            </div>
-
-
+            <div class="actions">
+              <button type="button" className="history" onClick={dismissal}>Ok</button> 
+            </div> 
+          </div> 
+        </div>
       </div>
       <div className="outside">
         <img src={add} alt="" className='addimg' />
-
         <div className="mainadd">
           <div className="addbg"></div>
-
           <form onSubmit={placeAdder} className='addform'>
             <h2 className='addhead'>Add Your Place</h2>
             <label>
@@ -217,7 +212,6 @@ export default function Add() {
                 ))}
               </div>
             </div>
-
             <div>
               Services
               <div className='services'>
@@ -263,18 +257,18 @@ export default function Add() {
               />
             </label>
             <br />
-            <span className="form-title">Upload your file</span>
-            <p className="form-paragraph">
-              File should be an image
-            </p>
+            <span className="form-title">Upload your files</span>
+            <p className="form-paragraph"></p>
             <label className="drop-container">
               <span className="drop-title">Drop files here</span>
               or
-              <input type='file' onChange={handleImageChange} id="file-input" />
+              <input type='file' onChange={handleImageChange} id="file-input" multiple />
             </label>
-            {imagePreview && (
+            {imagePreviews.length > 0 && (
               <div className="image-preview">
-                <img src={imagePreview} alt="Preview" className='imgpre' />
+                {imagePreviews.map((preview, index) => (
+                  <img key={index} src={preview} alt={`Preview ${index}`} className='imgpre' />
+                ))}
               </div>
             )}
             <br />

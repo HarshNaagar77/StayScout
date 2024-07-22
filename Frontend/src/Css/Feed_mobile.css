@@ -4,7 +4,8 @@
     height: 180px;
 }
 .place{
-    width: 150px;
+    width: 180px;
+    margin: 12px;
 }
 .places{
     margin: 0;
@@ -29,6 +30,12 @@
 }
 .navbar{
     padding-left: 30px;
+}
+.bi-heart{
+    /* display: none; */
+}
+.feedservices{
+    /* width: 200px; */
 }
 
 }

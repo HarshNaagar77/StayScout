@@ -3,6 +3,7 @@ import '../Css/Feed.css';
 import '../Css/Feed_mobile.css';
 import axios from 'axios';
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
@@ -51,8 +52,8 @@ export default function Feed() {
       <div className="places">
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post, index) => (
-            <div key={index} className="place">
-              <img className="feedimg" src={`http://localhost:3000/uploads/${post.image}`} alt="place" />
+            <Link key={index} className="place" to={'/place/' + post._id}>
+              <img className="feedimg" src={`http://localhost:3000/uploads/${post.images[1]}`} alt="place" />
               <div className="placecontent">
                 <div className="feedservices">
                   {post.services.slice(0, 3).map((service, i) => (
@@ -70,7 +71,7 @@ export default function Feed() {
                   <p className="feedrating"><i className="bi bi-heart"></i></p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <p>We couldn't find any places matching your search. Please try different keywords.</p>

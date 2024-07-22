@@ -1,0 +1,49 @@
+.innerimg{
+    width: 500px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.inner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.inner1{
+    /* background: orange; */
+    width: 35vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    cursor: pointer;
+    
+
+}
+.inner2{
+    /* background: green; */
+    width: 55vw;
+    height: 80vh;
+}
+
+.innerimg2{
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.inner1second{
+    display: flex;
+    width: 35vw;
+    flex-wrap: wrap;
+    /* justify-content: space-a; */
+    margin-left: 30px;
+    gap: 2px;
+    
+    align-items: flex-start;
+
+}

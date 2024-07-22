@@ -135,3 +135,7 @@ ul{
 .registerlink:hover{
     color: white;
 }
+
+.innerfeed{
+    padding-right: 243px;
+}

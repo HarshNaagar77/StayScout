@@ -100,7 +100,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/addplace', upload.single('image'), async (req, res) => {
+app.post('/addplace', upload.array('images', 10), async (req, res) => {
   const { token } = req.cookies;
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized' });
@@ -111,8 +111,10 @@ app.post('/addplace', upload.single('image'), async (req, res) => {
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    const { title, location, description, price, services, category, checkIn, checkOut, additional , guest } = req.body;
-    const image = req.file;
+    const { title, location, description, price, services, category, checkIn, checkOut, additional, guest } = req.body;
+    const images = req.files;
+
+
 
     try {
       const user = await User.findOne({ email: userData.email });
@@ -125,36 +127,40 @@ app.post('/addplace', upload.single('image'), async (req, res) => {
         location,
         description,
         price,
-        guest ,
+        guest,
         services: JSON.parse(services),  // Parse services from JSON
-        image: image ? image.filename : null,
+        images: images.map(image => image.filename),  // Store image filenames as an array
         user: user._id,
-        category: category, // Store category as a string
+        category, // Store category as a string
         checkIn,
         checkOut,
         additional: JSON.parse(additional),  // Parse additional details from JSON
       });
+
       await newPlace.save();
 
       user.place.push(newPlace._id);
       await user.save();
 
-      res.status(201).json({ message: 'Place added successfully', newPlace });
+      return res.status(201).json({ message: 'Place added successfully', newPlace });
     } catch (error) {
       console.error('Error adding place:', error);
-      res.status(500).json({ message: 'Failed to add place', error: error.message });
+      return res.status(500).json({ message: 'Failed to add place', error: error.message });
     }
   });
 });
 
-app.get('/render' , async function(req ,res){
-  const r1 = await Place.find()
-  res.send(r1)
-  console.log(r1)
+app.get('/render', async function (req, res) {
+  const places = await Place.find();
+  res.send(places);
+  console.log(places);
+});
 
-})
-
-
+app.get('/place/:id', async function (req, res) {
+  const { id } = req.params;
+  const placeData = await Place.findById(id);
+  res.send(placeData);
+});
 
 app.post('/logout', (req, res) => {
   res.clearCookie('token').status(200).json({ message: 'Logged out successfully' });
