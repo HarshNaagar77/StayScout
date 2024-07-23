@@ -219,6 +219,10 @@ textarea{
     border: 2px solid #5182d7; /* You can adjust the width and style as needed */
     outline: none; /* Optional: Removes the default focus outline */
   }
+  textarea:focus {
+    border: 2px solid #5182d7; /* You can adjust the width and style as needed */
+    outline: none; /* Optional: Removes the default focus outline */
+  }
   
   .addhead{
     font-size: 20px;
@@ -412,3 +416,4 @@ textarea{
     border: none;
     padding-bottom: 0;
   }
+  

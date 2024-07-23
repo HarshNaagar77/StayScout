@@ -9,7 +9,9 @@ import { NavLink } from 'react-router-dom';
 
 export default function PlacePage() {
   const { id } = useParams();
-  const [place, setPlace] = useState(null); // Initialize as null
+  const [place, setPlace] = useState(null);
+  const [user, setUser] = useState(null);
+
 
   useEffect(() => {
     axios.get(`http://localhost:3000/place/${id}`)
@@ -19,10 +21,23 @@ export default function PlacePage() {
       .catch(error => {
         console.error('Error fetching place data:', error);
       });
+
+
   }, [id]);
+  useEffect(() => {
+    if (place?.user) {
+      axios.get(`http://localhost:3000/user/${place.user}`)
+        .then(res => {
+          setUser(res.data);
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+        });
+    }
+  }, [place?.user]); 
 
   if (!place) {
-    return <p>Loading...</p>; // Handle loading state
+    return <p>Loading...</p>;
   }
 
   return (
@@ -51,33 +66,45 @@ export default function PlacePage() {
       <div className="inner">
         <div className="inner1">
           <div className="inner1first">
-          <img
-              className='innerimg'
-              src={`http://localhost:3000/uploads/${place.images[0]}`} // Correct path to image
-              alt="place"
-            />
+            {place.images && place.images[0] && (
+              <img
+                className='innerimg'
+                src={`http://localhost:3000/uploads/${place.images[0]}`}
+                alt="place"
+              />
+            )}
           </div>
           <div className="inner1second">
-          {place.images && place.images
-          .filter((_, index) => index !== 0) // Exclude image at index 0
-          .map((image, index) => (
-            <img
-              key={index}
-              className='innerimg2'
-              src={`http://localhost:3000/uploads/${image}`} // Correct path to image
-              alt="place"
-            />
-          ))}
-
+            {place.images && place.images
+              .filter((_, index) => index !== 0)
+              .slice(0, 2)
+              .map((image, index) => (
+                <img
+                  key={index}
+                  className='innerimg2'
+                  src={`http://localhost:3000/uploads/${image}`}
+                  alt="place"
+                />
+              ))}
           </div>
         </div>
         <div className="inner2">
-          <h3>{place.title}</h3>
-          <p>{place.description}</p>
-          <p>{place.price}</p>
-          <p>{place.location}</p>
-          <p>{place.category}</p>
-          <p>{place.services.join(', ')}</p> {/* Join services with a comma if it's an array */}
+          <h3 className='placetitle'>{place.title}</h3>
+          <p className='placedesc'>{place.description}</p>
+          {/* <p className='placeprice'>₹{place.price} / {place.category}</p> */}
+          <p className='placelocation'>{place.location}</p>
+          <p className='host'>Hosted by {user && <p>{user.username}</p>}</p>
+          <div className="placeservices">
+            <h4>What this place offers </h4>
+            <div>
+              {place.services.map((service, index) => (
+                <ul className='placeser' key={index}>
+                  <li>{service}</li>
+                  
+                </ul>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

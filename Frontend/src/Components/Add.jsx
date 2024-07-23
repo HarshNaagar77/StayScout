@@ -155,7 +155,7 @@ export default function Add() {
             <label>
               Title
               <input
-                className='input'
+                className='input text'
                 type='text'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -166,7 +166,7 @@ export default function Add() {
             <label>
               Description
               <textarea
-                className=''
+                className='input'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 rows={4}

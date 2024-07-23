@@ -10,7 +10,7 @@ const Place = require('./Routes/places');
 
 const app = express();
 app.use(cookieParser());
-app.use(express.static('public'))
+app.use(express.static('public'));
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
@@ -114,8 +114,6 @@ app.post('/addplace', upload.array('images', 10), async (req, res) => {
     const { title, location, description, price, services, category, checkIn, checkOut, additional, guest } = req.body;
     const images = req.files;
 
-
-
     try {
       const user = await User.findOne({ email: userData.email });
       if (!user) {
@@ -129,7 +127,7 @@ app.post('/addplace', upload.array('images', 10), async (req, res) => {
         price,
         guest,
         services: JSON.parse(services),  // Parse services from JSON
-        images: images.map(image => image.filename),  // Store image filenames as an array
+        images: images ? images.map(image => image.filename) : [],  // Store image filenames as an array
         user: user._id,
         category, // Store category as a string
         checkIn,
@@ -164,6 +162,20 @@ app.get('/place/:id', async function (req, res) {
 
 app.post('/logout', (req, res) => {
   res.clearCookie('token').status(200).json({ message: 'Logged out successfully' });
+});
+
+app.get('/user/:finder', async (req, res) => {
+  const { finder } = req.params;
+  try {
+    const userData = await User.findOne({ _id: finder }); // Assuming finder is the _id
+    if (!userData) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.send(userData);
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    res.status(500).json({ message: 'Failed to fetch user', error: error.message });
+  }
 });
 
 app.listen(PORT, () => {

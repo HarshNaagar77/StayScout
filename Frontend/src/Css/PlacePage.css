@@ -1,23 +1,27 @@
 .innerimg{
-    width: 500px;
-    height: 350px;
+    width: 870px;
+    height: 410px;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .inner{
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
-    padding-top: 100px;
+    /* padding-top: 90px; */
+    padding: 90px;
+    padding-top: 90px;
 }
 
 .inner1{
     /* background: orange; */
-    width: 35vw;
-    height: 80vh;
+    width: 50vw;
+    height: 60vh;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     /* justify-content: center; */
     align-items: center;
     cursor: pointer;
@@ -26,24 +30,89 @@
 }
 .inner2{
     /* background: green; */
-    width: 55vw;
+    width: 50vw;
     height: 80vh;
 }
 
 .innerimg2{
+    width: 450px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    
+}
+.inner1second{
+    margin-top: -5px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    gap: 10px;
+    padding-left: 10px;
+
+}
+
+/* .more img{
+    position: absolute;
     width: 250px;
     height: 200px;
     object-fit: cover;
-    border-radius: 20px;
 }
-.inner1second{
-    display: flex;
-    width: 35vw;
-    flex-wrap: wrap;
-    /* justify-content: space-a; */
-    margin-left: 30px;
-    gap: 2px;
-    
-    align-items: flex-start;
 
+.more p{
+    position: absolute;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.364);
+    height: 200px;
+    border-radius: 20px;
+    width: 250px;
+} */
+
+.placetitle{
+    font-size: 50px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+.inner2{
+    display: flex;
+    flex-direction: column;
+
+}
+.placedesc{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    padding-bottom: 10px;
+    width: 43vw;
+    
+}
+.host{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    padding-bottom: 10px;
+    width: 43vw;
+    
+}
+
+.placeprice{
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.placelocation{
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.placeser{
+    margin-left: -20px;
+    list-style: circle;
+}
+.placeservices{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    width: 43vw;
+    padding-bottom: 10px;
+}
+.placeservices h4{
+    font-weight: 500;
 }
