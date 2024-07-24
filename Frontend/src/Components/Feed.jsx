@@ -3,11 +3,15 @@ import '../Css/Feed.css';
 import '../Css/Feed_mobile.css';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Skeleton from 'react-loading-skeleton';
+import CardSkeleton from './CardSkeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { Link } from 'react-router-dom';
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const shuffleArray = (array) => {
@@ -17,40 +21,49 @@ export default function Feed() {
       }
       return array;
     };
-
-    axios.get('http://localhost:3000/render')
-      .then(res => {
-        const shuffledPosts = shuffleArray(res.data);
-        setPosts(shuffledPosts);
-      })
-      .catch(err => {
-        console.error('Error:', err);
-      });
+  
+    // Start both the data fetching and a 3-second timer simultaneously
+    Promise.all([
+      axios.get('http://localhost:3000/render').then(res => shuffleArray(res.data)),
+      new Promise(resolve => setTimeout(resolve, 800)) // 3-second delay
+    ])
+    .then(([shuffledPosts]) => {
+      setPosts(shuffledPosts);
+      setLoading(false); // Set loading to false when both promises have resolved
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      setLoading(false); // Ensure loading is set to false even if there's an error
+    });
   }, []);
 
   const handleSearchChange = (event) => {
-    
     setSearchQuery(event.target.value);
   };
 
-  const filteredPosts = posts.filter(post => 
+  const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     post.price.toString().includes(searchQuery) ||
     post.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    post.category.toString().toLowerCase().includes(searchQuery.toLowerCase()) // Ensure category is a string
+    post.category.toString().toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className='feed'>
-      <Navbar 
-        text='Feed' 
-        text2='Add' 
-        hideStartButton={true} 
+      <Navbar
+        text='Feed'
+        text2='Add'
+        hideStartButton={true}
         searchQuery={searchQuery}
         onSearchChange={handleSearchChange}
       />
       <div className="places">
-        {filteredPosts.length > 0 ? (
+        {loading ? (
+          // Display skeleton loaders while data is loading
+          Array(10).fill().map((_, index) => (
+            <CardSkeleton key={index} />
+          ))
+        ) : filteredPosts.length > 0 ? (
           filteredPosts.map((post, index) => (
             <Link key={index} className="place" to={'/place/' + post._id}>
               <img className="feedimg" src={`http://localhost:3000/uploads/${post.images[1]}`} alt="place" />

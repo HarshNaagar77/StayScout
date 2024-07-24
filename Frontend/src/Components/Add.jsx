@@ -240,18 +240,18 @@ export default function Add() {
             </label>
             <br />
             <label>
-              Check-In Time
+              Check-In 
               <input
-                type='time'
+                type='date'
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
               />
             </label>
             <br />
             <label>
-              Check-Out Time
+              Check-Out 
               <input
-                type='time'
+                type='date'
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
               />

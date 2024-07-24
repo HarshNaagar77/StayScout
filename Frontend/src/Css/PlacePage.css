@@ -1,5 +1,5 @@
 .innerimg{
-    width: 870px;
+    width: 970px;
     height: 410px;
     object-fit: cover;
     border-radius: 10px;
@@ -13,13 +13,13 @@
     justify-content: center;
     /* padding-top: 90px; */
     padding: 90px;
-    padding-top: 90px;
+    padding-top: 70px;
 }
 
 .inner1{
     /* background: orange; */
     width: 50vw;
-    height: 60vh;
+    height: 60vh; 
     display: flex;
     /* flex-direction: column; */
     /* justify-content: center; */
@@ -35,7 +35,7 @@
 }
 
 .innerimg2{
-    width: 450px;
+    width: 350px;
     height: 200px;
     object-fit: cover;
     border-radius: 10px;
@@ -70,10 +70,12 @@
 } */
 
 .placetitle{
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 500;
     margin: 0;
     padding: 0;
+    /* padding-top: 10px; */
+    margin-top: -15px;
 }
 
 .inner2{
@@ -84,13 +86,13 @@
 .placedesc{
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     padding-bottom: 10px;
-    width: 43vw;
+    width: 60vw;
     
 }
 .host{
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     padding-bottom: 10px;
-    width: 43vw;
+    width: 60vw;
     
 }
 
@@ -110,9 +112,111 @@
 }
 .placeservices{
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    width: 43vw;
+    width: 60vw;
     padding-bottom: 10px;
+}
+.additional{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    width: 60vw;
+    padding-bottom: 10px;
+}
+.available{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    width: 60vw;
+    padding-bottom: 20px;
 }
 .placeservices h4{
     font-weight: 500;
+}
+.additional h4{
+    font-weight: 500;
+}
+.available h4{
+    padding: 0;
+    margin: 0;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    font-weight: 500;
+}
+
+.maininner2{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.avail{
+    margin-top: -10px;
+}
+
+.tobefixed{
+    margin-left: 20px;
+}
+.available span{
+    font-weight: 500;
+}
+
+.placecard{
+    height: 75vh;
+    width: 350px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cardprice h4{
+    font-weight: 600;
+    font-size: 20px;
+    padding-left: 30px;
+}
+
+.cardform input{
+    width: 255px;
+}
+
+.cardform{
+    padding-left: 30px;
+}
+
+.cardform button {
+    margin-top: 10px;
+    width: 290px;
+    height: 40px;
+    background: #084cdf;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cardguest{
+    width: 288px;
+    margin-top: 10px;
+    height: 30px;
+    border-radius: 10px; 
+    padding-left: 10px;
+    font-size: 14px;
+    padding-right: 20px; /* Adjust the value as needed */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140"><polyline points="20 50 70 100 120 50" fill="none" stroke="%23000" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+}
+
+
+.form-group{
+    margin-top: 10px;
+}
+
+.no-arrows::-webkit-outer-spin-button,
+.no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cardcheckout {
+  -moz-appearance: textfield;
 }

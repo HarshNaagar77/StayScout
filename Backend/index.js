@@ -7,6 +7,7 @@ const multer = require('multer');
 const path = require('path');
 const User = require('./Routes/user');
 const Place = require('./Routes/places');
+const Booking = require('./Routes/booking')
 
 const app = express();
 app.use(cookieParser());
@@ -177,6 +178,43 @@ app.get('/user/:finder', async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch user', error: error.message });
   }
 });
+
+
+app.post('/book/:id', async function(req, res) {
+  const {token} = req.cookies
+  jwt.verify(token, 'shhh', async (err, userData) => {
+    if (err) return res.status(401).json({ message: 'Invalid token' });
+    const info = await User.findOne({ email : userData.email})
+    if(info){
+      try {
+        const {id} = req.params 
+        const { bName, bGuest, bCheckIn, bCheckOut, bPhone } = req.body;
+    
+        const booking = new Booking({
+          checkIn : bCheckIn,
+          checkOut : bCheckOut,
+          name : bName ,
+          phone : bPhone,
+          guest : bGuest,
+          user : info._id ,
+          place : id ,
+
+          // Ensure user and place IDs are correctly added if required
+        });
+    
+        await booking.save();
+        
+        res.status(201).json({ message: 'Booking successful', booking });
+      } catch (error) {
+        console.error('Booking error:', error);
+        res.status(500).json({ message: 'An error occurred while processing your request.', error: error.message });
+      }
+    }
+  })
+
+ 
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

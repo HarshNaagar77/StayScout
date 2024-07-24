@@ -1,0 +1,17 @@
+.cardskeleton {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .imgskele {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .divskele {
+    padding: 10px;
+  }
+  
