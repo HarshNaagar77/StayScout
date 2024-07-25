@@ -139,3 +139,7 @@ ul{
 .innerfeed{
     padding-right: 243px;
 }
+
+.bi-person{
+    cursor: pointer;
+}

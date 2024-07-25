@@ -46,13 +46,13 @@ const router = createBrowserRouter([
   },
   {
     path : '/add',
-    element : <ProtectedRoute>
+    element : <ProtectedRoute> 
     <Add />
   </ProtectedRoute>
   },
   {
     path : '/place/:id',
-    element : <PlacePage />
+    element : <ProtectedRoute> <PlacePage /></ProtectedRoute>
   },
   {
     path : '/payment',
@@ -60,16 +60,16 @@ const router = createBrowserRouter([
   },
   {
     path : '/payment/:id',
-    element :  <Cart></Cart>
+    element :  <ProtectedRoute><Cart></Cart></ProtectedRoute>
   
   },
   {
     path : '/success' , 
-    element : <Success />
+    element : <ProtectedRoute><Success /></ProtectedRoute>
   },
   {
     path : '/addsuccess' , 
-    element : <AddSuccess />
+    element : <ProtectedRoute><AddSuccess /> </ProtectedRoute>
   }
 ]);
 

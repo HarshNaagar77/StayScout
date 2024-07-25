@@ -39,7 +39,7 @@ export default function Navbar(props) {
               to='/start'
               className={({ isActive }) => (isActive ? 'registerlink active' : 'registerlink')}
             >
-              {props.start}
+              {props.start} 
             </NavLink>
           </button>
         )}
@@ -53,7 +53,7 @@ export default function Navbar(props) {
           />
         </div>)
 }
-        <i className="bi bi-person"></i>
+        {!props.hideProfile && <i className="bi bi-person"></i>}
       </div>
     </div>
   );

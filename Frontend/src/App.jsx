@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div>
-      <Navbar start = {'Get Started'} hideSearch={true} />
+      <Navbar start = {'Get Started'} hideSearch={true}  hideProfile = {true}/>
       <Home first = {"Scout"} second = {'For'} third = {'Comfort'}/>
       <Homepage2 />
     </div>
