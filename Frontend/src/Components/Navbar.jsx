@@ -1,9 +1,17 @@
 import React from 'react';
 import '../Css/Navbar.css';
 import logo from '../assets/logo4.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, redirect, useNavigate } from 'react-router-dom';
+
 
 export default function Navbar(props) {
+  const navigate = useNavigate()
+  
+
+  const redirect = () => {
+    navigate('/profile')
+  }
+
   return (
     <div className='navbar'>
       <div className='logoname'>
@@ -53,7 +61,7 @@ export default function Navbar(props) {
           />
         </div>)
 }
-        {!props.hideProfile && <i className="bi bi-person"></i>}
+        {!props.hideProfile && <i className="bi bi-person" onClick={redirect} ></i>}
       </div>
     </div>
   );

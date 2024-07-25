@@ -14,6 +14,7 @@ import CheckoutForm from './Components/CheckoutForm.jsx';
 import Cart from './Components/Cart.jsx';
 import Success from './Components/Success.jsx';
 import AddSuccess from './Components/AddSuccess.jsx';
+import Profile from './Components/Profile.jsx';
 
 
 const router = createBrowserRouter([
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
   {
     path : '/success' , 
     element : <ProtectedRoute><Success /></ProtectedRoute>
+  },
+  {
+    path : '/profile' , 
+    element : <ProtectedRoute><Profile /></ProtectedRoute>
   },
   {
     path : '/addsuccess' , 

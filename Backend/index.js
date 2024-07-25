@@ -238,6 +238,23 @@ app.post('/create-payment-intent', async (req, res) => {
 });
 
 
+app.get('/userprofile', async (req, res) => {
+  const { token } = req.cookies;
+  jwt.verify(token, 'shhh', async (err, userData) => {
+    if (err) return res.status(401).json({ message: 'Invalid token' });
+    
+    try {
+      const info = await User.findOne({ email: userData.email });
+      if (!info) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.json(info);
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      res.status(500).json({ message: 'Failed to fetch user profile', error: error.message });
+    }
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
