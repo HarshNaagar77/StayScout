@@ -3,6 +3,8 @@ import '../Css/Add.css';
 import Navbar from './Navbar';
 import axios from 'axios';
 import add from '../assets/houseimg2.png';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Add() {
   const [title, setTitle] = useState('');
@@ -18,6 +20,7 @@ export default function Add() {
   const [checkOut, setCheckOut] = useState('');
   const [additional, setAdditional] = useState('');
   const [additionalDetails, setAdditionalDetails] = useState([]);
+  const navigate = useNavigate()
 
   const services = [
     'Wi-Fi',
@@ -102,8 +105,7 @@ export default function Add() {
     setCheckIn('');
     setCheckOut('');
     setAdditionalDetails([]);
-    const pop = document.querySelector('.popup')
-    pop.style.display = 'block'
+navigate('/addsuccess')
   };
 
   const handleImageChange = (e) => {

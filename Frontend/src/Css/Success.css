@@ -1,0 +1,73 @@
+/* Success.css */
+
+.success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Changed from 100dvh */
+    background-color: #f3f4f6; /* Background color */
+  }
+  
+  .success-card {
+    max-width: 28rem; /* max-w-md */
+    text-align: center;
+  }
+  
+  .success-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 7rem; /* w-28 */
+    height: 7rem; /* h-28 */
+    background-color: #d1fae5; /* bg-green-200 */
+    border-radius: 50%; /* rounded-full */
+    margin-bottom: 1.5rem; /* mb-6 */
+    animation: pulse 1.5s infinite; /* animate-pulse */
+  }
+  
+  .success-circle-inner {
+    position: relative;
+    width: 5rem; /* w-20 */
+    height: 5rem; /* h-20 */
+    background-color: #10b981; /* bg-green-500 */
+    border-radius: 50%; /* rounded-full */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .success-tick {
+    position: absolute;
+    width: 3rem; /* w-12 */
+    height: 3rem; /* h-12 */
+    color: #ffffff; /* text-white */
+  }
+  
+  .success-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: bold; /* font-bold */
+    color: black; /* text-gray-800 */
+    margin-left: -3rem; /* -ml-12 */
+    margin-top: -20px;
+  }
+  
+  
+  .success-title2 {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: bold; /* font-bold */
+    color: black; /* text-gray-800 */
+    margin-left: -4.5rem; /* -ml-12 */
+    margin-top: -20px;
+  }
+  
+  .success-message {
+    margin-top: 20px;
+    
+  }
+  
+  .success-link {
+    color: #3b82f6; /* text-blue-500 */
+    text-decoration: underline; /* underline */
+  }
+  

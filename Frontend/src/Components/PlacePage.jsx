@@ -54,6 +54,7 @@ export default function PlacePage() {
     e.preventDefault()
     const location = place.location
     const price = place.price
+    const placeid = place._id
     const bData = {
       bName,
       bCheckIn,
@@ -62,16 +63,10 @@ export default function PlacePage() {
       bPhone,
       location,
       price,
+      placeid
     }
 
-    axios
-    .post(`http://localhost:3000/book/${place._id} `, bData)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+
     localStorage.setItem('bookingData', JSON.stringify(bData));
     navigate(`/payment/${place._id}`);
     setBCheckOut('')

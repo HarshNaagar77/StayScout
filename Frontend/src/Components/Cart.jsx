@@ -37,9 +37,10 @@ export default function Cart() {
   }
 
   const navigator = () => {
-    navigate('/payment')
-  }
-
+    const fprice = Math.round(data.price * dayDifference + data.price * 0.12 + data.price * 0.03);
+    localStorage.setItem('finalPrice', fprice); 
+    navigate('/payment');
+  };
 
   return (
     <div>
@@ -74,7 +75,7 @@ export default function Cart() {
 </div>
 
         <div className="cart2">
-            <div className='price'>
+            <div className='pricec'>
               <span className="label">Price :</span> ₹ {data.price} / Day
             </div>
             <div className='subtotal'>
@@ -87,7 +88,7 @@ export default function Cart() {
               <span className="label">Platform fee : </span> ₹ {data.price * 0.03} 
             </div>
             <div className='total'>
-              <span className="label tlabel">Total : </span>  <span className="tvalue">₹ {Math.round(data.price + data.price * dayDifference + data.price * 0.12 + data.price * 0.03)} </span>
+              <span className="label tlabel">Total : </span>  <span className="tvalue">₹ {Math.round(data.price * dayDifference + data.price * 0.12 + data.price * 0.03)} </span>
             </div>
             <button className="pay" onClick={navigator} >Pay now</button>
 

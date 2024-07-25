@@ -50,7 +50,6 @@
     border-radius: 20px;
     height: 50vh;
     border: 1px solid rgb(0,0,0,0.3);
-    
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     padding: 20px;
 }
@@ -65,7 +64,7 @@
     display: flex;
     justify-content: space-between;
   }
-  .price, .subtotal, .total, .tax , .fee {
+  .pricec, .subtotal, .total, .tax , .fee {
     
     display: flex;
     justify-content: space-between;
@@ -95,8 +94,17 @@
     padding: 10px;
     margin-top: 20px;
   }
+  .orgpay{
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    background-color: #5182d7;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+  }
 
-  .price{
+  .pricec{
     margin-top: 20px;
   }
   .tax{
@@ -114,4 +122,52 @@
   .tvalue{
     /* font-weight: 600; */
     font-size: 25px;
+  }
+
+
+
+  .payform{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(0,0,0,0.3);
+    width: 17vw;
+    border-radius: 20px;
+    height: 50vh;
+    
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+  .mainpay{
+    display: flex;
+    /* justify-content: space-between; */
+    padding: 100px;
+    gap: 35px;
+  }
+
+  .prices4{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: -15px;
+    border-bottom: 1px solid rgb(0,0,0,0.3);
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .org{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ninput{
+    width: 200px;
+
+  }
+
+  .cardimg{
+    width: 130px;
+    height: 25px;
   }
