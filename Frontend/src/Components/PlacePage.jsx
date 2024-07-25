@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from './Navbar';
 import '../Css/PlacePage.css';
 import '../Css/Navbar.css';
@@ -8,6 +8,7 @@ import logo from '../assets/logo4.png';
 import { NavLink } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+
 
 export default function PlacePage() {
   const { id } = useParams();
@@ -19,6 +20,8 @@ export default function PlacePage() {
   const [bName , setBName] = useState('')
   const [bPhone , setBPhone] = useState('')
   const [bGuest , setBGuest] = useState('')
+
+  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -49,16 +52,28 @@ export default function PlacePage() {
 
   const bookHandler = (e) => {
     e.preventDefault()
+    const location = place.location
+    const price = place.price
+    const bData = {
+      bName,
+      bCheckIn,
+      bCheckOut,
+      bGuest,
+      bPhone,
+      location,
+      price,
+    }
 
     axios
-    .post(`http://localhost:3000/book/${place._id} `, {bName , bCheckIn , bCheckOut , bGuest , bPhone})
+    .post(`http://localhost:3000/book/${place._id} `, bData)
     .then((res) => {
       console.log(res);
     })
     .catch((err) => {
       console.log(err);
     });
-
+    localStorage.setItem('bookingData', JSON.stringify(bData));
+    navigate(`/payment/${place._id}`);
     setBCheckOut('')
     setBCheckIn('')
     setBGuest('')
@@ -278,7 +293,7 @@ export default function PlacePage() {
                    setBPhone(e.target.value)
                   }} />
                 </div>
-                <Link to={'/cart/' + place._id}><button className="bookbtn">Book Now</button></Link>
+                <button className="bookbtn">Book Now</button>
               </form>
             </div>
           </div>

@@ -8,8 +8,10 @@ const path = require('path');
 const User = require('./Routes/user');
 const Place = require('./Routes/places');
 const Booking = require('./Routes/booking')
+const Stripe = require('stripe');
 
 const app = express();
+const stripe = Stripe('sk_test_51Pg8asRrdvF7ebjyIBJzqgNS8CcEJaIr2PIciKw434H4iGt6GRiVGdL3pfwt72wOKmUaICmRuCuDNK5J9lXeFKXL00IMehUNH8'); 
 app.use(cookieParser());
 app.use(express.static('public'));
 app.use(cors({
@@ -214,6 +216,27 @@ app.post('/book/:id', async function(req, res) {
 
  
 });
+
+
+
+
+app.post('/create-payment-intent', async (req, res) => {
+  const { amount, currency } = req.body;
+
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency,
+    });
+
+    res.send({
+      clientSecret: paymentIntent.client_secret,
+    });
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+});
+
 
 
 app.listen(PORT, () => {

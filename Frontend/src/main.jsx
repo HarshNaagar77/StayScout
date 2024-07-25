@@ -8,6 +8,10 @@ import { ProtectedRoute } from './Components/ProtectedRoute.jsx';
 import Login from './Components/Login.jsx';
 import Add from './Components/Add.jsx';
 import PlacePage from './Components/PlacePage.jsx';
+import StripeProvider from './Components/StripeProvider.jsx';
+import CheckoutForm from './Components/CheckoutForm.jsx';
+import Cart from './Components/Cart.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -47,6 +51,15 @@ const router = createBrowserRouter([
     path : '/place/:id',
     element : <PlacePage />
   },
+  {
+    path : '/payment',
+    element :  <StripeProvider><CheckoutForm /></StripeProvider>
+  },
+  {
+    path : '/payment/:id',
+    element :  <Cart></Cart>
+  
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
