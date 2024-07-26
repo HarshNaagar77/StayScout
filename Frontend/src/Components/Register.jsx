@@ -10,7 +10,7 @@ axios.defaults.withCredentials = true
 function Register() {
   return (
     <div>
-      <Navbar  hideStartButton={true} />
+      <Navbar  hideStartButton={true} hideSearch = {true} hideProfile = {true} />
       <RegisterForm />
     </div>
   );

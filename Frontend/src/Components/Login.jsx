@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function Login() {
   return (
     <div>
-      <Navbar hideStartButton={true} />
+      <Navbar hideStartButton={true} hideSearch = {true} hideProfile = {true} />
       <LoginPage />
     </div>
   );

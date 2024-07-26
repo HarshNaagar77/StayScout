@@ -4,13 +4,22 @@ import '../Css/Profile.css';
 import ProfilePage from '../Components/ProfilePage'
 import MyPlace from '../Components/MyPlaces'
 import MyBooking from '../Components/MyBooking'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Profile() {
   const [activeComponent, setActiveComponent] = useState('profile'); // State to manage the active component
+  const navigate = useNavigate()
 
   const handleNavClick = (component) => {
     setActiveComponent(component);
   };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    axios.post('http://localhost:3000/logout')
+    navigate('/')
+  }
 
   return (
     <div>
@@ -29,7 +38,7 @@ function Profile() {
             <i className='bi bi-calendar2'></i>
             <span className="tooltip">Bookings</span>
           </p>
-          <p onClick={() => handleNavClick('logout')}>
+          <p  onClick={logout}>
             <i className='bi bi-box-arrow-right'></i>
             <span className="tooltip">Logout</span>
           </p>
@@ -39,7 +48,6 @@ function Profile() {
           {activeComponent === 'profile' && <div><ProfilePage></ProfilePage></div>}
           {activeComponent === 'places' && <div><MyPlace></MyPlace></div>}
           {activeComponent === 'bookings' && <div><MyBooking></MyBooking></div>}
-          {activeComponent === 'logout' && <div>Logout Content</div>}
         </div>
       </div>
     </div>
