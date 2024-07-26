@@ -1,110 +1,202 @@
 .profile{
-    padding: 100px;
-    padding-top:70px;
-    display: flex;
-    padding-left: 85px;
-    padding-bottom: 0;
-    gap: 50px;
+  padding: 100px;
+  padding-top:70px;
+  display: flex;
+  padding-left: 85px;
+  padding-bottom: 0;
+  gap: 50px;
 }
 
 
 .profile {
-    display: flex;
-  }
+  display: flex;
+}
+
+.nav2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center;
+  align-content: center; */
+  border-right: 1px solid rgb(0,0,0,0.3);
+  width: 12vw;
+  height: 85vh;
+  /* padding-left: 20px; */
+  margin-left: 5px;
+  position: fixed;
+}
+
+.nav2 p {
+  position: relative;
+  margin: 10px 0;
+  color: #333; /* Adjust as needed */
+  font-size: 12px; /* Adjust as needed */
+  margin-right: 30px;
+}
+
+.nav2 i {
+  font-size: 20px; /* Adjust as needed */
+  padding-left: 15px;
+  margin-right: 8px; /* Space between icon and text */
+}
+
+.nav2 p .tooltip {
+  display: none;
+}
+
+.nav2 p:hover .tooltip {
+  display: inline;
+  margin-left: 8px; /* Space between icon and tooltip text */
+  font-size: 15px; /* Adjust as needed */
+}
+
+.nav2 p {
+  cursor: pointer; /* Indicates that the item is interactive */
+}
+
+
+.nav2 p:hover{
+  background: black;
+  color: white;
+  border-radius: 20px;
+}
+
+.nav2 p{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profilepage{
+  /* background: orange; */
+  height: 85vh;
+  width: 70vw;
+}
+
+.myplaces{
+  /* background: orange; */
+  height: 85vh;
+  width: 70vw;
+}
+.mybook{
+  /* background: orange; */
+  height: 85vh;
+  width: 70vw;
+}
+
+.pphead{
+  font-size: 30px;
+  border-bottom: 1px solid rgb(0,0,0);
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+.innercontent{
+  margin-left: 15vw;
+}
+
+.ppcover{
+  width: 70vw;
+  height: 22vh;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: rgb(245, 241, 241);
+}
+
+.ppcover i{
+  position: relative;
+  left: 68vw;
+  top: 17vh;
+}
+
+.ppcircle{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  position: relative;
+  top: -50px;
+  left: 30px;
   
-  .nav2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* align-items: center;
-    align-content: center; */
-    border-right: 1px solid rgb(0,0,0,0.3);
-    width: 12vw;
-    height: 85vh;
-    /* padding-left: 20px; */
-    margin-left: 5px;
-    position: fixed;
-  }
+}
+
+.ppinfoname{
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.ppinfoemail{
+  border-bottom: 1px solid rgb(0,0,0,0.3);
+  padding-bottom: 20px;
+}
+
+.ppcircle img{
+  width: 100px;
+  height: 100px;
+  border: 50%;
+  object-fit: cover;
+}
+
+.ppcards{
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.ppplace{
+  height: 150px;
+  border-radius: 10px;
+  /* width: 150px; */
+  /* border: 1px solid black; */
+  background-color: rgb(245, 241, 241);
+}
+.ppreview{
+  height: 150px;
+  border-radius: 10px;
+  width: 190px;
+  /* border: 1px solid black; */
+  background-color: rgb(245, 241, 241);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   
-  .nav2 p {
-    position: relative;
-    margin: 10px 0;
-    color: #333; /* Adjust as needed */
-    font-size: 12px; /* Adjust as needed */
-    margin-right: 30px;
-  }
-  
-  .nav2 i {
-    font-size: 20px; /* Adjust as needed */
-    padding-left: 15px;
-    margin-right: 8px; /* Space between icon and text */
-  }
-  
-  .nav2 p .tooltip {
-    display: none;
-  }
-  
-  .nav2 p:hover .tooltip {
-    display: inline;
-    margin-left: 8px; /* Space between icon and tooltip text */
-    font-size: 15px; /* Adjust as needed */
-  }
-  
-  .nav2 p {
-    cursor: pointer; /* Indicates that the item is interactive */
-  }
-  
+}
 
-  .nav2 p:hover{
-    background: black;
-    color: white;
-    border-radius: 20px;
-  }
+.ppplace {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  .nav2 p{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+.ppcards span{
+  font-size: 40px;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  /* border-bottom: 1px solid rgb(0,0,0,0.3); */
+}
 
-  .profilepage{
-    /* background: orange; */
-    height: 85vh;
-    width: 70vw;
-  }
+.ppcards div{
+  border-top: 1px solid rgb(0,0,0,0.3);
+  padding-top: 10px;
+  margin-top: -20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
 
-  .pphead{
-    font-size: 30px;
-    border-bottom: 1px solid rgb(0,0,0);
-    margin-top: 10px;
-    padding-bottom: 10px;
-  }
+.myplacesnumber{
+  font-size: 40px;
+  letter-spacing: -2px;
+  font-weight: 500;
+  margin-top: 20px;
+}
 
-  .innercontent{
-    margin-left: 15vw;
-  }
-
-  .ppcover{
-    width: 70vw;
-    height: 22vh;
-    margin-top: 10px;
-    border-radius: 10px;
-    background: rgb(239, 238, 238);
-  }
-
-  .ppcover i{
-    position: relative;
-    left: 68vw;
-    top: 17vh;
-  }
-
-  .ppcircle{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: orange;
-    position: relative;
-    top: -50px;
-    left: 50px;
-    
-  }
+.placeflex{
+  display: flex;
+  width: 80vw;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 20px;
+}

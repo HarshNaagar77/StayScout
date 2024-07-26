@@ -255,6 +255,61 @@ app.get('/userprofile', async (req, res) => {
     }
   });
 });
+app.get('/userplace', async (req, res) => {
+  const { token } = req.cookies;
+  try {
+    const userData = jwt.verify(token, 'shhh');
+    const user = await User.findOne({ email: userData.email });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const userplace = await Place.find({ user: user._id });
+    res.json(userplace);
+  } catch (error) {
+    console.error('Error fetching user place:', error);
+    res.status(500).json({ message: 'Failed to fetch user place', error: error.message });
+  }
+});
+
+app.get('/findbook', async function (req, res) {
+  const { token } = req.cookies;
+  try {
+    const userData = jwt.verify(token, 'shhh');
+    const user = await User.findOne({ email: userData.email });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const userbook = await Booking.find({ user: user._id });
+    res.json(userbook);
+  } catch (error) {
+    console.error('Error fetching user bookings:', error);
+    res.status(500).json({ message: 'Failed to fetch user bookings', error: error.message });
+  }
+});
+
+app.get('/findbooking', async function (req, res) {
+  const { token } = req.cookies;
+  try {
+    const userData = jwt.verify(token, 'shhh');
+    const user = await User.findOne({ email: userData.email });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const userbook = await Booking.find({ user: user._id });
+    if (!userbook) return res.status(404).json({ message: 'No bookings found' });
+
+    // Extract place IDs from bookings
+    const placeIds = userbook.map(booking => booking.place);
+
+    // Fetch place details using place IDs
+    const userplaces = await Place.find({ _id: { $in: placeIds } });
+
+    res.json(userplaces);
+  } catch (error) {
+    console.error('Error fetching user bookings:', error);
+    res.status(500).json({ message: 'Failed to fetch user bookings', error: error.message });
+  }
+});
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
