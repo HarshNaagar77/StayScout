@@ -2,6 +2,7 @@ import React from 'react';
 import '../Css/Navbar.css';
 import logo from '../assets/logo4.png';
 import { NavLink, redirect, useNavigate } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 
 
 export default function Navbar(props) {
@@ -10,6 +11,14 @@ export default function Navbar(props) {
 
   const redirect = () => {
     navigate('/profile')
+  }
+
+  const dark = () => {
+    const body = document.querySelector('body')
+    const nav = document.querySelector('.navbar')
+    body.classList.add('trans')
+    body.classList.toggle('darkmode')
+    nav.classList.toggle('darkmode')
   }
 
   return (
@@ -61,6 +70,8 @@ export default function Navbar(props) {
           />
         </div>)
 }
+        {/* <div className="dark" onClick={dark}>Dark</div> */}
+        <ThemeToggle></ThemeToggle>
         {!props.hideProfile && <i className="bi bi-person" onClick={redirect} ></i>}
       </div>
     </div>

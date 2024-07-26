@@ -143,3 +143,22 @@ ul{
 .bi-person{
     cursor: pointer;
 }
+
+.darkmode{
+    color: white;
+    background-color: black;
+}
+
+.trans{
+    transition: all 1s ease;
+}
+
+.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
