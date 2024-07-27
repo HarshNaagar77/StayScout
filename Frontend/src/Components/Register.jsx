@@ -4,13 +4,15 @@ import '../Css/RegisterForm.css';
 import '../Css/Register_mobile.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { z } from 'zod';
+import { registerSchema } from './validationSchema'; // Import the Zod schema
 
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true;
 
 function Register() {
   return (
     <div>
-      <Navbar  hideStartButton={true} hideSearch = {true} hideProfile = {true} />
+      <Navbar hideStartButton={true} hideSearch={true} hideProfile={true} />
       <RegisterForm />
     </div>
   );
@@ -20,18 +22,30 @@ function RegisterForm() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isRegistered, setIsRegistered] = useState(false);
-
-  const logout = () => {
-    axios.post('http://localhost:3000/logout')
-    localStorage.removeItem('token')
-  }
-
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  // Other state and function definitions remain the same
+
+  const validateForm = () => {
+    try {
+      registerSchema.parse({ username, email, password });
+      setErrors({}); // Clear errors if validation passes
+      return true;
+    } catch (e) {
+      if (e instanceof z.ZodError) {
+        const formattedErrors = e.errors.reduce((acc, error) => {
+          acc[error.path[0]] = error.message;
+          return acc;
+        }, {});
+        setErrors(formattedErrors);
+      }
+      return false;
+    }
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return; // Stop submission if validation fails
+
     try {
       const response = await axios.post('http://localhost:3000/registeruser', {
         username,
@@ -39,12 +53,9 @@ function RegisterForm() {
         password,
       });
       console.log(response.data.message);
-      // Clear the input fields
       setUsername('');
       setEmail('');
       setPassword('');
-      // Redirect to /feed
-      setIsRegistered(true)
       localStorage.setItem('token', response.data.token);
       navigate('/feed');
     } catch (error) {
@@ -52,47 +63,49 @@ function RegisterForm() {
     }
   };
 
-  
-
   return (
     <div className='registerform'>
       <div>
-      <h2 className='register'>Register</h2>
-      <Link to='/login'>
-      <button type='submit' className='demo'>Already have an account ? <span className=' loginbtn'>Login</span></button>
-      </Link>
+        <h2 className='register'>Register</h2>
+        <Link to='/login'>
+          <button type='button' className='demo'>Already have an account? <span className='loginbtn'>Login</span></button>
+        </Link>
       </div>
       <form className='form1' onSubmit={submitHandler}>
         <div>
-          <label>Username</label>
-          <input className='username' placeholder='Enter your username'
+          <label className='errlabel'>Username {errors.username && <p className='error'>{errors.username}</p>}</label>
+          <input
+            className='username'
+            placeholder='Enter your username'
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div>
-          <label>Email</label>
-          <input className='email' placeholder='Enter your email'
+          <label className='errlabel'>Email  {errors.email && <p className='error'>{errors.email}</p>}</label>
+          <input
+            className='email'
+            placeholder='Enter your email'
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          
         </div>
         <div>
-          <label>Password</label>
-          <input className='password' placeholder='Enter your password'
+          <label className='errlabel'>Password  {errors.password && <p className='error'>{errors.password}</p>}</label>
+          <input
+            className='password'
+            placeholder='Enter your password'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        <button type='submit' className='submit'>Submit</button>
+          
         </div>
-        {/* <Link to = "/login">Login</Link> */}
+        <button type='submit' className='submit'>Submit</button>
       </form>
-
-
-      {/* <button onClick={logout} className='logout'>Logout</button> */}
     </div>
   );
 }

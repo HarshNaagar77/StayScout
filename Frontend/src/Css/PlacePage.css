@@ -225,5 +225,15 @@
 .error{
     color: red;
     font-size: 12px;
-    margin-top: 5px;
+    /* margin-top: 5px; */
+}
+
+.top-error{
+    color: orange;
+    padding-top: -20px;
+}
+
+.errlabel{
+    display: flex;
+    justify-content: space-between;
 }

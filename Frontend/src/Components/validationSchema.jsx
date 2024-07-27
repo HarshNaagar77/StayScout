@@ -9,3 +9,9 @@ export const bookingSchema = z.object({
   bPhone: z.string().min(10, 'Phone number should be at least 10 digits long').regex(/^\d+$/, 'Phone number should contain only digits'),
   
 });
+
+export const registerSchema = z.object({
+    username: z.string().min(1, 'Username is required'),
+    email: z.string().email('Invalid email address').min(1, 'Email is required'),
+    password: z.string().min(6, 'Password must be at least 6 characters long').min(1, 'Password is required')
+  });
