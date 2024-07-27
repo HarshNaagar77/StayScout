@@ -71,7 +71,7 @@ export default function Navbar(props) {
         </div>)
 }
         {/* <div className="dark" onClick={dark}>Dark</div> */}
-        <ThemeToggle></ThemeToggle>
+        {/* <ThemeToggle></ThemeToggle> */}
         {!props.hideProfile && <i className="bi bi-person" onClick={redirect} ></i>}
       </div>
     </div>
