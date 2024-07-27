@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import cardimg from '../assets/card.png'
 import Navbar from '../Components/Navbar'
 
+
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();

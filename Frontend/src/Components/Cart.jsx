@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import '../Css/Cart.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import '../Css/Cart_mobile.css'
 
 
 export default function Cart() {
@@ -49,7 +50,7 @@ export default function Cart() {
         <div className="cart1">
             <h4>Rental Details</h4>
             <div className='biller'>
-              <span className="label">Biller Name:</span> {data.bName}
+              <span className="label">Biller Name:</span> <span className="datas">{data.bName}</span>
             </div>
             <div className='in'>
               <span className="label">Check-in Date:</span> {checkInDate}

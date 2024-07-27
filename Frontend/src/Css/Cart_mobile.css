@@ -1,0 +1,123 @@
+@media screen and (max-width: 768px) {
+
+    .maincart{
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .cart1 h4{
+        font-size: 25px;
+    }
+    
+    .cart1{
+        padding: 20px;
+        margin-top: 60px;
+        width: 80vw;
+        height: 53vh;
+    }
+    .cart2{
+        padding: 20px;
+        margin-top: 20px;
+        width: 80vw;
+        height: 40vh;
+    }
+    .payform{
+        padding: 20px;
+        margin-top: 20px;
+        width: 80vw;
+        height: 40vh;
+    }
+    
+    .label{
+        font-size: 15px;
+    }
+    
+    .biller, .in, .out, .days, .g, .phone, .tax, .Total, .location {
+        gap: -110px;
+    }
+    
+    .cart1 div{
+        font-size: 14px;
+    }
+
+    .datas{
+        margin-left: -20px;
+        padding-left: -20px;
+    }
+
+    .mainpay{
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .getstarted{
+        margin-left: -80px;
+        width: 100px;
+    }
+
+    .home-bottom{
+        width: 330px;
+        margin-left: 20px;
+    }
+
+    .navlink{
+        margin-left: -35px;
+        padding-right: 20px;
+    }
+
+
+    .outside{
+        display: block;
+
+    }
+
+    .addimg{
+        display: inline-block;
+        width: 300px;
+        margin-left: -10px;
+        height: 300px;
+        position: relative;
+    }
+    .addform{
+        margin-left: -70px;
+        margin-top: 20px;
+        width: 350px;
+        
+    }
+
+    .catinput{
+        width: 360px;
+        /* display: inline-block; */
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 20px;
+    }
+
+    .category{
+        display: none;
+    }
+    .services{
+        width: 330px;
+        /* flex-direction: column; */
+        padding: 20px;
+    }
+
+    .catinput input {
+        padding: 0;
+        margin: 0;
+    }
+
+    .addsubmit{
+        width: 375px;
+        margin-top: -20px;
+        margin-bottom: 30px;
+    }
+
+    .drop-container{
+        width: 350px;
+    }
+
+    .search-bar{
+        display: none;
+    }
+}
