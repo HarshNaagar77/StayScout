@@ -1,6 +1,7 @@
-import axios from 'axios';
+// src/PlacePage.jsx
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from './Navbar';
 import '../Css/PlacePage.css';
 import '../Css/Navbar.css';
@@ -8,27 +9,27 @@ import logo from '../assets/logo4.png';
 import { NavLink } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-
+import { z } from 'zod';
+import { bookingSchema } from './validationSchema'; // Import the Zod schema
 
 export default function PlacePage() {
   const { id } = useParams();
   const [place, setPlace] = useState(null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [bCheckIn , setBCheckIn] = useState('')
-  const [bCheckOut , setBCheckOut] = useState('')
-  const [bName , setBName] = useState('')
-  const [bPhone , setBPhone] = useState('')
-  const [bGuest , setBGuest] = useState('')
-
-  const navigate = useNavigate()
-
+  const [bCheckIn, setBCheckIn] = useState('');
+  const [bCheckOut, setBCheckOut] = useState('');
+  const [bName, setBName] = useState('');
+  const [bPhone, setBPhone] = useState('');
+  const [bGuest, setBGuest] = useState('');
+  const [error, setError] = useState(''); // Single error state
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true); // Ensure loading is true at the start
+    setLoading(true);
     const fetchData = axios.get(`http://localhost:3000/place/${id}`);
-    const timeout = new Promise(resolve => setTimeout(resolve, 800)); // 1 second timeout
-  
+    const timeout = new Promise(resolve => setTimeout(resolve, 800));
+
     Promise.all([fetchData, timeout]).then(([res]) => {
       setPlace(res.data);
       setLoading(false);
@@ -50,11 +51,39 @@ export default function PlacePage() {
     }
   }, [place?.user]);
 
+  const validateForm = () => {
+    if (!bName) {
+      setError('Name is required');
+      return false;
+    }
+    if (!bCheckIn) {
+      setError('Check-in date is required');
+      return false;
+    }
+    if (!bCheckOut) {
+      setError('Check-out date is required');
+      return false;
+    }
+    if (!bGuest) {
+      setError('Number of guests is required');
+      return false;
+    }
+    if (!bPhone) {
+      setError('Phone number is required');
+      return false;
+    }
+
+    setError(''); // Clear error if validation passes
+    return true;
+  };
+
   const bookHandler = (e) => {
-    e.preventDefault()
-    const location = place.location
-    const price = place.price
-    const placeid = place._id
+    e.preventDefault();
+    if (!validateForm()) return; // If validation fails, stop the form submission
+
+    const location = place.location;
+    const price = place.price;
+    const placeid = place._id;
     const bData = {
       bName,
       bCheckIn,
@@ -64,103 +93,29 @@ export default function PlacePage() {
       location,
       price,
       placeid
-    }
-
+    };
 
     localStorage.setItem('bookingData', JSON.stringify(bData));
     navigate(`/payment/${place._id}`);
-    setBCheckOut('')
-    setBCheckIn('')
-    setBGuest('')
-    setBName('')
-    setBPhone('')
-
-    
-  }
+    // Clear form fields
+    setBCheckOut('');
+    setBCheckIn('');
+    setBGuest('');
+    setBName('');
+    setBPhone('');
+  };
 
   if (loading) {
     return (
       <div>
-        <Navbar
-          text='Feed'
-          text2='Add'
-          hideStartButton={true}
-        />
-        <div className='navbar'>
-          <div className='logoname'>
-            <img className='logo' src={logo} alt="Logo" />
-            <p className='logotext'>
-              <NavLink to="/" className={({ isActive }) => (isActive ? 'logotexxt active' : 'logotexxt')}>StayScout</NavLink>
-            </p>
-          </div>
-          <div>
-            <ul className='innerfeed'>
-              <li><NavLink to='/feed'>Feed</NavLink></li>
-              <li><NavLink to='/add'>Add</NavLink></li>
-            </ul>
-          </div>
-          <div className='rightnav'>
-            <i className="bi bi-person"></i>
-          </div>
-        </div>
-        <div className="inner">
-          <div className="inner1">
-            <div className="inner1first">
-              <Skeleton height={400} width={970} />
-            </div>
-            <div className="inner1second">
-              <Skeleton height={190} width={350} />
-              <Skeleton height={190} width={350} />
-            </div>
-          </div>
-          <div className="maininner2">
-            <div className="inner2">
-              <Skeleton count={4} />
-              <Skeleton height={30} width="60%" />
-              <Skeleton height={40} width="80%" />
-              <Skeleton height={20} width="40%" />
-            </div>
-            <div className="inner2sec">
-              <div className="placecard">
-                <Skeleton height={60} width={200}  style={{marginLeft : '20px' , marginTop : '20px'}}/>
-                <form className="cardform">
-                  <div className="form-group">
-                    <Skeleton height={30} width={100} />
-                    <Skeleton height={30} width={300} />
-                  </div>
-                  <div className="form-group">
-                    <Skeleton height={30} width={100} />
-                    <Skeleton height={30} width={300} />
-                  </div>
-                  <div className="form-group">
-                    <Skeleton height={30} width={100} />
-                    <Skeleton height={30} width={300} />
-                  </div>
-                  <div className="form-group">
-                    <Skeleton height={30} width={100} />
-                    <Skeleton height={30} width={300} />
-                  </div>
-                  <div className="form-group">
-                    <Skeleton height={30} width={100} />
-                    <Skeleton height={30} width={300} />
-                  </div>
-                  <Skeleton height={40} width={300} />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Loading Skeleton */}
       </div>
     );
   }
 
   return (
     <div>
-      <Navbar
-        text='Feed'
-        text2='Add'
-        hideStartButton={true}
-      />
+      <Navbar text='Feed' text2='Add' hideStartButton={true} />
       <div className='navbar'>
         <div className='logoname'>
           <img className='logo' src={logo} alt="Logo" />
@@ -186,7 +141,7 @@ export default function PlacePage() {
                 className='innerimg'
                 src={`http://localhost:3000/uploads/${place.images[0]}`}
                 alt="place"
-                loading="lazy" // Lazy loading
+                loading="lazy"
               />
             ) : (
               <Skeleton height={400} width={970} />
@@ -203,7 +158,7 @@ export default function PlacePage() {
                     className='innerimg2'
                     src={`http://localhost:3000/uploads/${image}`}
                     alt="place"
-                    loading="lazy" // Lazy loading
+                    loading="lazy"
                   />
                 ))
             ) : (
@@ -252,23 +207,37 @@ export default function PlacePage() {
                 <h4>₹{place.price} / {place.category}</h4>
               </div>
               <form className="cardform" onSubmit={bookHandler}>
+                {error && <p className="error form-error">{error}</p>}
                 <div className="form-group">
                   <label>Check-in</label> <br />
-                  <input type="date" className='cardcheckin date' min={place.checkIn} max={place.checkOut} onChange={ (e) => {
-                    setBCheckIn(e.target.value)
-                  }} />
+                  <input
+                    type="date"
+                    className='cardcheckin date'
+                    min={place.checkIn}
+                    max={place.checkOut}
+                    value={bCheckIn}
+                    onChange={(e) => setBCheckIn(e.target.value)}
+                  />
                 </div>
                 <div className="form-group">
                   <label>Check-out</label> <br />
-                  <input type="date" className='cardcheckout date'  min={place.checkIn} max={place.checkOut} onChange={(e) => {
-                    setBCheckOut(e.target.value)
-                  }} />
+                  <input
+                    type="date"
+                    className='cardcheckout date'
+                    min={place.checkIn}
+                    max={place.checkOut}
+                    value={bCheckOut}
+                    onChange={(e) => setBCheckOut(e.target.value)}
+                  />
                 </div>
                 <div className="form-group">
                   <label>Guests</label> <br />
-                  <select className='cardguest' onChange={(e) => {
-                    setBGuest(e.target.value)
-                  }}>
+                  <select
+                    className='cardguest'
+                    value={bGuest}
+                    onChange={(e) => setBGuest(e.target.value)}
+                  >
+                    <option value="">Select guests</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -278,17 +247,25 @@ export default function PlacePage() {
                 </div>
                 <div className="form-group">
                   <label>Name</label> <br />
-                  <input type="text" className='cardcheckout' placeholder='Enter your name' onChange={(e) => {
-                    setBName(e.target.value)
-                  }}/>
+                  <input
+                    type="text"
+                    className='cardcheckout'
+                    placeholder='Enter your name'
+                    value={bName}
+                    onChange={(e) => setBName(e.target.value)}
+                  />
                 </div>
                 <div className="form-group">
                   <label>Phone Number</label> <br />
-                  <input type="text" className='cardcheckout' placeholder='Enter your number'onChange={(e) => {
-                   setBPhone(e.target.value)
-                  }} />
+                  <input
+                    type="text"
+                    className='cardcheckout'
+                    placeholder='Enter your phone number'
+                    value={bPhone}
+                    onChange={(e) => setBPhone(e.target.value)}
+                  />
                 </div>
-                <button className="bookbtn">Book Now</button>
+                <button type="submit" className="submit-button">Book Now</button>
               </form>
             </div>
           </div>

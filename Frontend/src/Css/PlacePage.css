@@ -157,7 +157,7 @@
 }
 
 .placecard{
-    height: 75vh;
+    height: 78vh;
     width: 350px;
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -219,4 +219,11 @@
 
 .cardcheckout {
   -moz-appearance: textfield;
+}
+
+
+.error{
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
 }
