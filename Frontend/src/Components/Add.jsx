@@ -4,7 +4,8 @@ import Navbar from './Navbar';
 import axios from 'axios';
 import add from '../assets/houseimg2.png';
 import { useNavigate } from 'react-router-dom';
-
+import { z } from 'zod';
+import { placeSchema } from './validationSchema';
 
 export default function Add() {
   const [title, setTitle] = useState('');
@@ -12,15 +13,18 @@ export default function Add() {
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
   const [guest, setGuest] = useState('');
-  const [images, setImages] = useState([]); // State for multiple images
-  const [imagePreviews, setImagePreviews] = useState([]); // State for image previews
+  const [images, setImages] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [additional, setAdditional] = useState('');
   const [additionalDetails, setAdditionalDetails] = useState([]);
-  const navigate = useNavigate()
+  
+  const [errors, setErrors] = useState({});
+  
+  const navigate = useNavigate();
 
   const services = [
     'Wi-Fi',
@@ -61,8 +65,40 @@ export default function Add() {
     setAdditionalDetails((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const validateForm = () => {
+    try {
+      placeSchema.parse({
+        title,
+        description,
+        location,
+        price,
+        guest,
+        checkIn,
+        checkOut,
+        selectedServices,
+        selectedCategory,
+        additionalDetails
+      });
+      setErrors({});
+      return true;
+    } catch (e) {
+      if (e instanceof z.ZodError) {
+        const fieldErrors = e.errors.reduce((acc, err) => {
+          if (err.path.length) {
+            acc[err.path[0]] = err.message;
+          }
+          return acc;
+        }, {});
+        setErrors(fieldErrors);
+      }
+      return false;
+    }
+  };
+
   const placeAdder = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
 
     const formData = new FormData();
     formData.append('title', title);
@@ -88,6 +124,7 @@ export default function Add() {
       })
       .then((res) => {
         console.log(res);
+        navigate('/addsuccess');
       })
       .catch((err) => {
         console.log(err);
@@ -105,7 +142,6 @@ export default function Add() {
     setCheckIn('');
     setCheckOut('');
     setAdditionalDetails([]);
-navigate('/addsuccess')
   };
 
   const handleImageChange = (e) => {
@@ -113,22 +149,22 @@ navigate('/addsuccess')
     setImages(files);
     const previews = files.map((file) => URL.createObjectURL(file));
     setImagePreviews(previews);
-    console.log(files)
+    console.log(files);
   };
 
-  const dismissal = () =>{
-    const pop = document.querySelector('.popup')
-    pop.style.display = 'none'
-  }
+  const dismissal = () => {
+    const pop = document.querySelector('.popup');
+    if (pop) pop.style.display = 'none';
+  };
 
   return (
     <div className='add'>
       <Navbar text='Feed' text2='Add' hideStartButton={true} />
       <div className="popup">
-        <div class="card"> 
-          <button type="button" className="dismiss" onClick={dismissal}>×</button> 
-          <div class="header"> 
-            <div class="image">
+        <div className="card">
+          <button type="button" className="dismiss" onClick={dismissal}>×</button>
+          <div className="header">
+            <div className="image">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
                 <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
@@ -136,16 +172,16 @@ navigate('/addsuccess')
                   <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#000000" d="M20 7L9.00004 18L3.99994 13"></path>
                 </g>
               </svg>
-            </div> 
-            <div class="content">
-              <span class="title">Place validated</span>
-              <br /> 
-              <p class="message">Your listing has been successfully updated and is now live. Thank you for contributing! Others can now view and explore it.</p> 
-            </div> 
-            <div class="actions">
-              <button type="button" className="history" onClick={dismissal}>Ok</button> 
-            </div> 
-          </div> 
+            </div>
+            <div className="content">
+              <span className="title">Place validated</span>
+              <br />
+              <p className="message">Your listing has been successfully updated and is now live. Thank you for contributing! Others can now view and explore it.</p>
+            </div>
+            <div className="actions">
+              <button type="button" className="history" onClick={dismissal}>Ok</button>
+            </div>
+          </div>
         </div>
       </div>
       <div className="outside">
@@ -154,8 +190,10 @@ navigate('/addsuccess')
           <div className="addbg"></div>
           <form onSubmit={placeAdder} className='addform'>
             <h2 className='addhead'>Add Your Place</h2>
-            <label>
-              Title
+            <label >
+              <div className='errdiv'>
+                Title {errors.title && <p className='error'>{errors.title}</p>}
+                </div>
               <input
                 className='input text'
                 type='text'
@@ -163,10 +201,13 @@ navigate('/addsuccess')
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder='Enter the title'
               />
+              
             </label>
             <br />
             <label>
-              Description
+              <div className="errdiv">
+              Description {errors.description && <p className='error'>{errors.description}</p>}
+              </div>
               <textarea
                 className='input'
                 value={description}
@@ -175,30 +216,39 @@ navigate('/addsuccess')
                 cols={50}
                 placeholder='Enter the description'
               />
+              
             </label>
             <br />
             <label>
-              Location
+              <div className="errdiv">
+              Location{errors.location && <p className='error'>{errors.location}</p>}
+              </div>
               <input
                 type='text'
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder='Enter the location'
               />
+              
             </label>
             <br />
             <label>
-              Price (in Rupees)
+              <div className="errdiv">
+              Price (in Rupees){errors.price && <p className='error'>{errors.price}</p>}
+              </div>
               <input
                 type='text'
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder='Enter the price'
               />
+              
             </label>
             <br />
             <div className="category">
-              Category (per)
+              <div className='errdiv'>
+              Category (per){errors.selectedCategory && <p className='error'>{errors.selectedCategory}</p>}
+              </div>
               <div className='catinput'>
                 {categories.map((category) => (
                   <label key={category}>
@@ -213,9 +263,12 @@ navigate('/addsuccess')
                   </label>
                 ))}
               </div>
+              
             </div>
             <div>
-              Services
+              <div className="errdiv">
+              Services{errors.selectedServices && <p className='error'>{errors.selectedServices}</p>}
+              </div>
               <div className='services'>
                 {services.map((service) => (
                   <label key={service}>
@@ -229,39 +282,50 @@ navigate('/addsuccess')
                   </label>
                 ))}
               </div>
+              
             </div>
             <br />
             <label>
-              Number of guests
+              <div className="errdiv">
+              Number of guests{errors.guest && <p className='error'>{errors.guest}</p>}
+              </div>
               <input
                 type='text'
                 value={guest}
                 onChange={(e) => setGuest(e.target.value)}
                 placeholder='Enter the number of guests'
               />
+              
             </label>
             <br />
             <label>
-              Check-In 
+              <div className="errdiv">
+              Check-In{errors.checkIn && <p className='error'>{errors.checkIn}</p>}
+              </div>
               <input
                 type='date'
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
               />
+              
             </label>
             <br />
             <label>
-              Check-Out 
+              <div className="err div">
+              Check-Out{errors.checkOut && <p className='error'>{errors.checkOut}</p>}
+              </div>
               <input
                 type='date'
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
               />
+              
             </label>
             <br />
             <span className="form-title">Upload your files</span>
             <p className="form-paragraph"></p>
             <label className="drop-container">
+              
               <span className="drop-title">Drop files here</span>
               or
               <input type='file' onChange={handleImageChange} id="file-input" multiple />

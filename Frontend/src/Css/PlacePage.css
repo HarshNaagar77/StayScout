@@ -237,3 +237,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+.errdiv{
+    display: flex;
+    justify-content: space-between;
+}
