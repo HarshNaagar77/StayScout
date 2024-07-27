@@ -1,6 +1,7 @@
 @media screen and (max-width: 768px) {
 .feedimg{
-    width: 180px;
+    width: 183px;
+    margin-left: -2px;
     height: 180px;
 }
 .place{
@@ -38,4 +39,9 @@
     /* width: 200px; */
 }
 
+
+.cardskeleton{
+    width: 180px;
 }
+}
+

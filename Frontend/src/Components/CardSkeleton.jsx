@@ -1,6 +1,7 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import '../Css/CardSkeleton.css'
+import '../Css/Feed_mobile.css'
 
 export default function CardSkeleton() {
   return (

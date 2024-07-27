@@ -351,6 +351,7 @@ export default function Add() {
             <div className="additional-list">
               {additionalDetails.map((detail, index) => (
                 <div key={index} className="additional-item">
+                  
                   {detail}
                   <button type="button" onClick={() => handleAdditionalDelete(index)}>X</button>
                 </div>

@@ -108,8 +108,76 @@ export default function PlacePage() {
   if (loading) {
     return (
       <div>
-        {/* Loading Skeleton */}
+      <Navbar
+        text='Feed'
+        text2='Add'
+        hideStartButton={true}
+      />
+      <div className='navbar'>
+        <div className='logoname'>
+          <img className='logo' src={logo} alt="Logo" />
+          <p className='logotext'>
+            <NavLink to="/" className={({ isActive }) => (isActive ? 'logotexxt active' : 'logotexxt')}>StayScout</NavLink>
+          </p>
+        </div>
+        <div>
+          <ul className='innerfeed'>
+            <li><NavLink to='/feed'>Feed</NavLink></li>
+            <li><NavLink to='/add'>Add</NavLink></li>
+          </ul>
+        </div>
+        <div className='rightnav'>
+          <i className="bi bi-person"></i>
+        </div>
       </div>
+      <div className="inner">
+        <div className="inner1">
+          <div className="inner1first">
+            <Skeleton height={400} width={970} />
+          </div>
+          <div className="inner1second">
+            <Skeleton height={190} width={350} />
+            <Skeleton height={190} width={350} />
+          </div>
+        </div>
+        <div className="maininner2">
+          <div className="inner2">
+            <Skeleton count={4} />
+            <Skeleton height={30} width="60%" />
+            <Skeleton height={40} width="80%" />
+            <Skeleton height={20} width="40%" />
+          </div>
+          <div className="inner2sec">
+            <div className="placecard">
+              <Skeleton height={60} width={200}  style={{marginLeft : '20px' , marginTop : '20px'}}/>
+              <form className="cardform">
+                <div className="form-group">
+                  <Skeleton height={30} width={100} />
+                  <Skeleton height={30} width={300} />
+                </div>
+                <div className="form-group">
+                  <Skeleton height={30} width={100} />
+                  <Skeleton height={30} width={300} />
+                </div>
+                <div className="form-group">
+                  <Skeleton height={30} width={100} />
+                  <Skeleton height={30} width={300} />
+                </div>
+                <div className="form-group">
+                  <Skeleton height={30} width={100} />
+                  <Skeleton height={30} width={300} />
+                </div>
+                <div className="form-group">
+                  <Skeleton height={30} width={100} />
+                  <Skeleton height={30} width={300} />
+                </div>
+                <Skeleton height={40} width={300} />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     );
   }
 
