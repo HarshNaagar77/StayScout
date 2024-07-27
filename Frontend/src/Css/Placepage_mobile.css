@@ -1,0 +1,85 @@
+@media screen and (max-width: 768px) {
+
+    .innerimg{
+        width: 340px;
+        height: 200px;
+        border-radius: 10px;
+    }
+    
+    .inner{
+        padding: 25px;
+    }
+    
+    .inner1{
+        flex-direction: column;
+        padding: 60px;
+        padding-bottom: 0;
+    }
+    
+    .innerimg2{
+        width: 165px;
+        margin-top: 10px;
+        height: 100px;
+        border-radius: 10px;
+    }
+    
+    .inner1second{
+        margin-left: 80px;
+    }
+    
+    .inner1first{
+        margin-left: 20px;
+    }
+    
+    .maininner2{
+        flex-direction: column;
+        padding-top: 0;
+        margin-top: 0;
+    }
+    
+    .placetitle{
+        width: 350px;
+        font: 20px;
+    }
+    
+    .placedesc{
+        width: 350px;
+    }
+    
+    .placelocation{
+        width: 350px;
+    }
+    
+    .host{
+        width: 350px;
+    }
+    
+    .placeservices{
+        width: 350px;
+    }
+    
+    .available{
+        width: 350px;
+    }
+    
+    .additional{
+        width: 350px;
+    }
+    
+    .placecard{
+        margin-top: 40px;
+    }
+    
+    .inner2{
+        width: 350px;
+        margin-top: -200px;
+    }
+    
+    .placetitle{
+        font-size: 20px;
+    }
+
+    .placecard{
+        height: 63vh;
+    }
+}
