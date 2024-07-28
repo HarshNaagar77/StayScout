@@ -22,7 +22,6 @@ app.use(express.json());
 
 const PORT = 3000;
 
-// Multer configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/uploads');
