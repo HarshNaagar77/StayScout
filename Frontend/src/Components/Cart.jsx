@@ -66,7 +66,7 @@ export default function Cart() {
             </div>
             <div className="location">
               <span className="label">Place location : </span> {data.location}
-            </div>
+            </div> 
             <div className="phone">
               <span className="label">Phone number:</span> {data.bPhone}
             </div>
