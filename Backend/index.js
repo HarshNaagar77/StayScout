@@ -1,13 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');  // Updated to bcryptjs
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const path = require('path');
 const User = require('./Routes/user');
 const Place = require('./Routes/places');
-const Booking = require('./Routes/booking')
+const Booking = require('./Routes/booking');
 const Stripe = require('stripe');
 
 const app = express();
@@ -46,8 +46,8 @@ app.post('/registeruser', async (req, res) => {
       return res.status(400).json({ message: 'User with this email already exists' });
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt(10);  // bcryptjs method
+    const hash = await bcrypt.hash(password, salt);  // bcryptjs method
 
     const newUser = new User({
       username,
@@ -81,7 +81,7 @@ app.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'User with this email does not exist' });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);  // bcryptjs method
 
     if (!isPasswordValid) {
       return res.status(400).json({ message: 'Invalid password' });
