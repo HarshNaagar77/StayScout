@@ -36,7 +36,9 @@ const router = createBrowserRouter([
   {
     path: '/feed',
     element: (
+      <ProtectedRoute>
         <Feed />
+      </ProtectedRoute>
     )
   },
   {
@@ -45,8 +47,9 @@ const router = createBrowserRouter([
   },
   {
     path : '/add',
-    element : 
+    element : <ProtectedRoute> 
     <Add />
+  </ProtectedRoute>
   },
   {
     path : '/place/:id',
