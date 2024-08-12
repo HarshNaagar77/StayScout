@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/StayScout')
+mongoose.connect('mongodb+srv://naagarharsh70:harsh9311@stayscout.lcgve.mongodb.net/?retryWrites=true&w=majority&appName=StayScout')
 
 const placeSchema = new mongoose.Schema({
   title: String,
