@@ -5,7 +5,7 @@ import Home from './Components/Home';
 import Homepage2 from './Components/Homepage2';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://stayscout.onrender.com/';
 
 function App() {
 
