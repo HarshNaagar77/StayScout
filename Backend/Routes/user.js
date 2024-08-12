@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 const dbUri = 'mongodb+srv://naagarharsh70:harsh9311@stayscout.lcgve.mongodb.net/StayScout?retryWrites=true&w=majority';
 
 mongoose.connect(dbUri, {
-    ssl: true,
-  })
-  .then(() => console.log('MongoDB connected successfully'))
-  .catch(err => console.error('MongoDB connection error:', err));
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // Increase the timeout
+  connectTimeoutMS: 30000,         // Increase the connection timeout
+})
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.error('MongoDB Connection Error:', err));
 
 const userSchema = new mongoose.Schema({
     username: {
