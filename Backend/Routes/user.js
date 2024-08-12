@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/StayScout')
+mongoose.connect('mongodb+srv://HarshDB123:harsh9311@practicedb.wl8ctoe.mongodb.net/StayScout?retryWrites=true&w=majority&appName=practiceDB')
 
 const userSchema = new mongoose.Schema({
     username: {
