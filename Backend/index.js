@@ -15,7 +15,7 @@ const stripe = Stripe('sk_test_51Pg8asRrdvF7ebjyIBJzqgNS8CcEJaIr2PIciKw434H4iGt6
 app.use(cookieParser());
 app.use(express.static('public'));
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://stayscout-1.onrender.com/',
   credentials: true
 }));  
 app.use(express.json());
