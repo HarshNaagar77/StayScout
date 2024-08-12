@@ -28,7 +28,7 @@ export default function PlacePage() {
 
   useEffect(() => {
     setLoading(true);
-    const fetchData = axios.get(`http://localhost:3000/place/${id}`);
+    const fetchData = axios.get(`https://stayscout.onrender.com/place/${id}`);
     const timeout = new Promise(resolve => setTimeout(resolve, 800));
 
     Promise.all([fetchData, timeout]).then(([res]) => {
@@ -42,7 +42,7 @@ export default function PlacePage() {
 
   useEffect(() => {
     if (place?.user) {
-      axios.get(`http://localhost:3000/user/${place.user}`)
+      axios.get(`https://stayscout.onrender.com/user/${place.user}`)
         .then(res => {
           setUser(res.data);
         })
@@ -208,7 +208,7 @@ export default function PlacePage() {
             {place.images && place.images[0] ? (
               <img
                 className='innerimg'
-                src={`http://localhost:3000/uploads/${place.images[0]}`}
+                src={`https://stayscout.onrender.com/uploads/${place.images[0]}`}
                 alt="place"
                 loading="lazy"
               />
@@ -225,7 +225,7 @@ export default function PlacePage() {
                   <img
                     key={index}
                     className='innerimg2'
-                    src={`http://localhost:3000/uploads/${image}`}
+                    src={`https://stayscout.onrender.com/uploads/${image}`}
                     alt="place"
                     loading="lazy"
                   />

@@ -16,8 +16,8 @@ export default function MyBooking() {
     const fetchData = async () => {
       try {
         const [response1, response2] = await Promise.all([
-          axios.get('http://localhost:3000/findbook'),
-          axios.get('http://localhost:3000/findbooking'),
+          axios.get('https://stayscout.onrender.com/findbook'),
+          axios.get('https://stayscout.onrender.com/findbooking'),
         ]);
         setData(response1.data);
         setBookingData(response2.data);
@@ -77,7 +77,7 @@ export default function MyBooking() {
           <div className='placeflex'>
             {bookingData.map((booking, index) => (
               <div key={index} className="booking-item">
-                <img className="feedimg" src={`http://localhost:3000/uploads/${booking.images[0]}`} alt="place" />
+                <img className="feedimg" src={`https://stayscout.onrender.com/uploads/${booking.images[0]}`} alt="place" />
                 <div className="feedservices">
                   {booking.services.slice(0, 3).map((service, i) => (
                     <span key={i} className="feedservice">{service}</span>

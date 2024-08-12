@@ -24,7 +24,7 @@ export default function Feed() {
   
     // Start both the data fetching and a 3-second timer simultaneously
     Promise.all([
-      axios.get('http://localhost:3000/render').then(res => shuffleArray(res.data)),
+      axios.get('https://stayscout.onrender.com/render').then(res => shuffleArray(res.data)),
       new Promise(resolve => setTimeout(resolve, 800)) // 3-second delay
     ])
     .then(([shuffledPosts]) => {
@@ -66,7 +66,7 @@ export default function Feed() {
         ) : filteredPosts.length > 0 ? (
           filteredPosts.map((post, index) => (
             <Link key={index} className="place" to={'/place/' + post._id}>
-              <img className="feedimg" src={`http://localhost:3000/uploads/${post.images[1]}`} alt="place" />
+              <img className="feedimg" src={`https://stayscout.onrender.com/uploads/${post.images[1]}`} alt="place" />
               <div className="placecontent">
                 <div className="feedservices">
                   {post.services.slice(0, 3).map((service, i) => (
