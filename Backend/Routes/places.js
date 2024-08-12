@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://naagarharsh70:harsh9311@stayscout.lcgve.mongodb.net/?retryWrites=true&w=majority&appName=StayScout')
+const dbUri = 'mongodb+srv://naagarharsh70:harsh9311@stayscout.lcgve.mongodb.net/StayScout?retryWrites=true&w=majority';
+
 
 const placeSchema = new mongoose.Schema({
   title: String,

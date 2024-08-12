@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://naagarharsh70:harsh9311@stayscout.lcgve.mongodb.net/?retryWrites=true&w=majority&appName=StayScout')
+
+const dbUri = 'mongodb+srv://naagarharsh70:harsh9311@stayscout.lcgve.mongodb.net/StayScout?retryWrites=true&w=majority';
+
+mongoose.connect(dbUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  ssl: true,
+})
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -19,9 +28,9 @@ const userSchema = new mongoose.Schema({
     place: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'places'
-      }],
+    }],
 });
 
-const user = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = user;
+module.exports = User;
