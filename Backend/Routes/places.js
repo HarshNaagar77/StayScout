@@ -14,6 +14,6 @@ const placeSchema = new mongoose.Schema({
   checkIn: String,
   checkOut: String,
   additional: [String]
-});
+}); 
 
 module.exports = mongoose.model('Place', placeSchema);

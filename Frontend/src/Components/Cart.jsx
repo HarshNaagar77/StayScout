@@ -26,7 +26,6 @@ export default function Cart() {
   const checkOutDate = data.bCheckOut;
 
   const checkIn = new Date(checkInDate);
-  
   const checkOut = new Date(checkOutDate);
   const isValidDate = (date) => date instanceof Date && !isNaN(date);
   let dayDifference = NaN;
