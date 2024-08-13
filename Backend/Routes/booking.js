@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-const dbUri = 'mongodb+srv://naagarharsh70:harsh9311@stayscout.lcgve.mongodb.net/StayScout?retryWrites=true&w=majority';
-
-
+mongoose.connect('mongodb://localhost:27017/StayScout')
 
 const bookingSchema = new mongoose.Schema({
   checkIn: String, 

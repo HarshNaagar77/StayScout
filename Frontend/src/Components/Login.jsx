@@ -54,7 +54,7 @@ function LoginPage() {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.post('https://stayscout.onrender.com/login', { email, password }, { withCredentials: true });
+      const response = await axios.post('http://localhost:3000/login', { email, password }, { withCredentials: true });
       localStorage.setItem('token', response.data.token);
       setEmail('');
       setPassword('');

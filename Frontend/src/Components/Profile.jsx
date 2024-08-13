@@ -17,7 +17,7 @@ function Profile() {
 
   const logout = () => {
     localStorage.removeItem('token');
-    axios.post('https://stayscout.onrender.com/logout')
+    axios.post('http://localhost:3000/logout')
     navigate('/')
   }
 

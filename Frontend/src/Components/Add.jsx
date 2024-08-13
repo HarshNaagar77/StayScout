@@ -116,7 +116,7 @@ export default function Add() {
     formData.append('additional', JSON.stringify(additionalDetails));
 
     axios
-      .post('https://stayscout.onrender.com/addplace', formData, {
+      .post('/addplace', formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',

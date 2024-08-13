@@ -47,7 +47,7 @@ function RegisterForm() {
     if (!validateForm()) return; // Stop submission if validation fails
 
     try {
-      const response = await axios.post('https://stayscout.onrender.com/registeruser', {
+      const response = await axios.post('http://localhost:3000/registeruser', {
         username,
         email,
         password,

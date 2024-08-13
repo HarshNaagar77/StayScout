@@ -14,7 +14,7 @@ export default function ProfilePage() {
 
     const fetchData = async () => {
       try {
-        const res = await axios.get('https://stayscout.onrender.com/userprofile');
+        const res = await axios.get('http://localhost:3000/userprofile');
         setData(res.data);
       } catch (err) {
         setError(err.message);

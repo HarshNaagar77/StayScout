@@ -1,15 +1,5 @@
 const mongoose = require('mongoose');
-
-const dbUri = 'mongodb+srv://naagarharsh70:harsh9311@stayscout.lcgve.mongodb.net/StayScout?retryWrites=true&w=majority';
-
-mongoose.connect(dbUri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 30000, // Increase the timeout
-  connectTimeoutMS: 30000,         // Increase the connection timeout
-})
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.error('MongoDB Connection Error:', err));
+mongoose.connect('mongodb://localhost:27017/StayScout')
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -29,9 +19,9 @@ const userSchema = new mongoose.Schema({
     place: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'places'
-    }],
+      }],
 });
 
-const User = mongoose.model('User', userSchema);
+const user = mongoose.model('user', userSchema);
 
-module.exports = User;
+module.exports = user;
