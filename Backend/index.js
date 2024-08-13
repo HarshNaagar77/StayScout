@@ -103,6 +103,8 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/addplace', upload.array('images', 10), async (req, res) => {
+  console.log('Cookies:', req.cookies); // Add this line to check if cookies are received
+
   const { token } = req.cookies;
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized' });

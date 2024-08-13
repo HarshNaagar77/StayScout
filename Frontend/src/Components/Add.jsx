@@ -120,7 +120,11 @@ export default function Add() {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
+
         },
+        credentials: 'include', // This ensures cookies are sent with requests
+        body: JSON.stringify(data),
       })
       .then((res) => {
         console.log(res);
