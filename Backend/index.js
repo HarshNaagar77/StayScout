@@ -66,7 +66,11 @@ app.post('/registeruser', async (req, res) => {
         console.error('JWT Error:', err);
         return res.status(500).json({ message: 'Error creating token', error: err.message });
       }
-      res.cookie('token', token, { httpOnly: true }).status(201).json({ message: 'User registered successfully', token });
+        res.cookie('token', token, {
+          httpOnly: true,
+          sameSite: 'none',
+          secure: true
+        }).status(201).json({ message: 'User registered successfully', token });
     });
 
   } catch (error) {
@@ -97,7 +101,11 @@ app.post('/login', async (req, res) => {
         return res.status(500).json({ message: 'Error creating token', error: err.message });
       }
 
-      res.cookie('token', token, { httpOnly: true }).status(200).json({ message: 'Login successful', token });
+        res.cookie('token', token, {
+          httpOnly: true,
+          sameSite: 'none',
+          secure: true
+        }).status(200).json({ message: 'Login successful', token });
     });
 
   } catch (error) {
@@ -167,7 +175,11 @@ app.get('/place/:id', async function (req, res) {
 });
 
 app.post('/logout', (req, res) => {
-  res.clearCookie('token').status(200).json({ message: 'Logged out successfully' });
+  res.clearCookie('token', {
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true
+  }).status(200).json({ message: 'Logged out successfully' });
 });
 
 app.get('/user/:finder', async (req, res) => {
