@@ -116,7 +116,7 @@ export default function Add() {
     formData.append('additional', JSON.stringify(additionalDetails));
 
     axios
-      .post('/addplace', formData, {
+      .post(`${import.meta.env.VITE_API_URL}/addplace`, formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',
