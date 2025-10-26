@@ -115,14 +115,18 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/addplace', upload.array('images', 10), async (req, res) => {
+  console.log('--- /addplace called ---');
+  console.log('Cookies received:', req.cookies);
   const { token } = req.cookies;
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    console.log('No token cookie received.');
+    return res.status(401).json({ message: 'Unauthorized: No token cookie received.' });
   }
 
   jwt.verify(token, 'shhh', async (err, userData) => {
     if (err) {
-      return res.status(401).json({ message: 'Unauthorized' });
+      console.log('JWT verification failed:', err);
+      return res.status(401).json({ message: 'Unauthorized: Invalid token.' });
     }
 
     const { title, location, description, price, services, category, checkIn, checkOut, additional, guest } = req.body;
@@ -131,6 +135,7 @@ app.post('/addplace', upload.array('images', 10), async (req, res) => {
     try {
       const user = await User.findOne({ email: userData.email });
       if (!user) {
+        console.log('User not found for email:', userData.email);
         return res.status(400).json({ message: 'User not found' });
       }
 
@@ -154,6 +159,7 @@ app.post('/addplace', upload.array('images', 10), async (req, res) => {
       user.place.push(newPlace._id);
       await user.save();
 
+      console.log('Place added successfully:', newPlace._id);
       return res.status(201).json({ message: 'Place added successfully', newPlace });
     } catch (error) {
       console.error('Error adding place:', error);
