@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
@@ -11,7 +12,7 @@ const Booking = require('./Routes/booking')
 const Stripe = require('stripe');
 
 const app = express();
-const stripe = Stripe('sk_test_51Pg8asRrdvF7ebjyIBJzqgNS8CcEJaIr2PIciKw434H4iGt6GRiVGdL3pfwt72wOKmUaICmRuCuDNK5J9lXeFKXL00IMehUNH8'); 
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 app.use(cookieParser());
 app.use(express.static('public'));
 app.use(cors({
@@ -20,7 +21,7 @@ app.use(cors({
 }));  
 app.use(express.json());
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -169,7 +170,7 @@ app.post('/logout', (req, res) => {
 app.get('/user/:finder', async (req, res) => {
   const { finder } = req.params;
   try {
-    const userData = await User.findOne({ _id: finder }); // Assuming finder is the _id
+    const userData = await User.findOne({ _id: finder });
     if (!userData) {
       return res.status(404).json({ message: 'User not found' });
     }
