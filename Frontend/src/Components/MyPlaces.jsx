@@ -1,4 +1,5 @@
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL;
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
@@ -15,14 +16,14 @@ export default function MyPlaces() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userProfile = await axios.get('http://localhost:3000/userprofile');
+  const userProfile = await axios.get(`${API_URL}/userprofile`);
         setData(userProfile.data);
       } catch (err) {
         setError(err.message);
       }
   
       try {
-        const userPlace = await axios.get('http://localhost:3000/userplace');
+  const userPlace = await axios.get(`${API_URL}/userplace`);
         console.log('UserPlace Response:', userPlace.data); // Add this line
         setData2(Array.isArray(userPlace.data) ? userPlace.data : []); // Ensure data2 is always an array
       } catch (err) {
@@ -83,7 +84,7 @@ export default function MyPlaces() {
         {data2.map((res, index) => (
           <div key={index}>
             <Link to={`/place/${res._id}`}>
-              <img className="feedimg" src={`http://localhost:3000/uploads/${res.images[1]}`} alt="place" />
+              <img className="feedimg" src={`${API_URL}/uploads/${res.images[1]}`} alt="place" />
               <div className="placecontent">
                 <div className="feedservices">
                   {res.services.slice(0, 3).map((service, i) => (

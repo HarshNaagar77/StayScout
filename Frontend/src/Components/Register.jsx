@@ -47,7 +47,7 @@ function RegisterForm() {
     if (!validateForm()) return; // Stop submission if validation fails
 
     try {
-      const response = await axios.post('http://localhost:3000/registeruser', {
+  const response = await axios.post(`${import.meta.env.VITE_API_URL}/registeruser`, {
         username,
         email,
         password,

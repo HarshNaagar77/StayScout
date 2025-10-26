@@ -71,7 +71,7 @@ const CheckoutForm = () => {
     const cardElement = elements.getElement(CardNumberElement);
 
     try {
-      const { data: response } = await axios.post('http://localhost:3000/create-payment-intent', {
+  const { data: response } = await axios.post(`${import.meta.env.VITE_API_URL}/create-payment-intent`, {
         amount: fprice, // Use the calculated final price
         currency: 'usd',
       });
@@ -100,7 +100,7 @@ const CheckoutForm = () => {
           bPhone: data.bPhone,
         }
         axios
-          .post(`http://localhost:3000/book/${data.placeid}`, bdata)
+          .post(`${import.meta.env.VITE_API_URL}/book/${data.placeid}`, bdata)
           .then((res) => {
             console.log(res);
           })

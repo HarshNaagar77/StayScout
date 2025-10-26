@@ -17,7 +17,7 @@ function Profile() {
 
   const logout = () => {
     localStorage.removeItem('token');
-    axios.post('http://localhost:3000/logout')
+  axios.post(`${import.meta.env.VITE_API_URL}/logout`)
     navigate('/')
   }
 

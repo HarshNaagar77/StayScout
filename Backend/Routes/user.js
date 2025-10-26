@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/StayScout')
+mongoose.connect('mongodb+srv://harsh9311:harsh9311@cluster0.u3vjpvv.mongodb.net/?appName=Cluster0')
 
 const userSchema = new mongoose.Schema({
     username: {

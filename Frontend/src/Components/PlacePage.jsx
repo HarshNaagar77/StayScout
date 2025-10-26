@@ -28,7 +28,8 @@ export default function PlacePage() {
 
   useEffect(() => {
     setLoading(true);
-    const fetchData = axios.get(`http://localhost:3000/place/${id}`);
+  const API_URL = import.meta.env.VITE_API_URL;
+  const fetchData = axios.get(`${API_URL}/place/${id}`);
     const timeout = new Promise(resolve => setTimeout(resolve, 800));
 
     Promise.all([fetchData, timeout]).then(([res]) => {
@@ -42,7 +43,7 @@ export default function PlacePage() {
 
   useEffect(() => {
     if (place?.user) {
-      axios.get(`http://localhost:3000/user/${place.user}`)
+  axios.get(`${API_URL}/user/${place.user}`)
         .then(res => {
           setUser(res.data);
         })
@@ -208,7 +209,7 @@ export default function PlacePage() {
             {place.images && place.images[0] ? (
               <img
                 className='innerimg'
-                src={`http://localhost:3000/uploads/${place.images[0]}`}
+                src={`${API_URL}/uploads/${place.images[0]}`}
                 alt="place"
                 loading="lazy"
               />
@@ -225,7 +226,7 @@ export default function PlacePage() {
                   <img
                     key={index}
                     className='innerimg2'
-                    src={`http://localhost:3000/uploads/${image}`}
+                    src={`${API_URL}/uploads/${image}`}
                     alt="place"
                     loading="lazy"
                   />
