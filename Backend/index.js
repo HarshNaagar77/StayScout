@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
