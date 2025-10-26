@@ -16,9 +16,12 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 app.use(cookieParser());
 app.use(express.static('public'));
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'https://stayscoutclient.onrender.com'
+  ],
   credentials: true
-}));  
+}));
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
