@@ -10,6 +10,7 @@ import { NavLink } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../Css/Placepage_mobile.css'
+const API_URL = import.meta.env.VITE_API_URL;
 import { z } from 'zod';
 import { bookingSchema } from './validationSchema'; // Import the Zod schema
 
