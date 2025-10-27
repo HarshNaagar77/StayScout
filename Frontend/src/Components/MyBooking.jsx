@@ -78,7 +78,7 @@ export default function MyBooking() {
           <div className='placeflex'>
             {bookingData.map((booking, index) => (
               <div key={index} className="booking-item">
-                <img className="feedimg" src={`${import.meta.env.VITE_API_URL}/uploads/${booking.images[0]}`} alt="place" />
+                <img className="feedimg" src={booking.images[0]} alt="place" />
                 <div className="feedservices">
                   {booking.services.slice(0, 3).map((service, i) => (
                     <span key={i} className="feedservice">{service}</span>

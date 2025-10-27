@@ -67,7 +67,7 @@ export default function Feed() {
         ) : filteredPosts.length > 0 ? (
           filteredPosts.map((post, index) => (
             <Link key={index} className="place" to={'/place/' + post._id}>
-              <img className="feedimg" src={`${API_URL}/uploads/${post.images[1]}`} alt="place" />
+              <img className="feedimg" src={post.images[1]} alt="place" />
               <div className="placecontent">
                 <div className="feedservices">
                   {post.services.slice(0, 3).map((service, i) => (

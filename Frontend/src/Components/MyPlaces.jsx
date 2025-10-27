@@ -84,7 +84,7 @@ export default function MyPlaces() {
         {data2.map((res, index) => (
           <div key={index}>
             <Link to={`/place/${res._id}`}>
-              <img className="feedimg" src={`${API_URL}/uploads/${res.images[1]}`} alt="place" />
+              <img className="feedimg" src={res.images[1]} alt="place" />
               <div className="placecontent">
                 <div className="feedservices">
                   {res.services.slice(0, 3).map((service, i) => (

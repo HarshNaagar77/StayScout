@@ -210,7 +210,7 @@ export default function PlacePage() {
             {place.images && place.images[0] ? (
               <img
                 className='innerimg'
-                src={`${API_URL}/uploads/${place.images[0]}`}
+                src={place.images[0]}
                 alt="place"
                 loading="lazy"
               />
@@ -227,7 +227,7 @@ export default function PlacePage() {
                   <img
                     key={index}
                     className='innerimg2'
-                    src={`${API_URL}/uploads/${image}`}
+                    src={image}
                     alt="place"
                     loading="lazy"
                   />
