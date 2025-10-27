@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const User = require('./Routes/user');
 const Place = require('./Routes/places');
 const Booking = require('./Routes/booking')
@@ -26,12 +28,18 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'public/uploads');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'stayscout_uploads',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
+    transformation: [{ width: 1000, height: 1000, crop: 'limit' }]
   }
 });
 const upload = multer({ storage });
@@ -130,7 +138,7 @@ app.post('/addplace', upload.array('images', 10), async (req, res) => {
     }
 
     const { title, location, description, price, services, category, checkIn, checkOut, additional, guest } = req.body;
-    const images = req.files;
+  const images = req.files;
 
     try {
       const user = await User.findOne({ email: userData.email });
@@ -145,13 +153,13 @@ app.post('/addplace', upload.array('images', 10), async (req, res) => {
         description,
         price,
         guest,
-        services: JSON.parse(services),  // Parse services from JSON
-        images: images ? images.map(image => image.filename) : [],  // Store image filenames as an array
+        services: JSON.parse(services),
+        images: images ? images.map(image => image.path) : [], // Store Cloudinary URLs
         user: user._id,
-        category, // Store category as a string
+        category,
         checkIn,
         checkOut,
-        additional: JSON.parse(additional),  // Parse additional details from JSON
+        additional: JSON.parse(additional),
       });
 
       await newPlace.save();
